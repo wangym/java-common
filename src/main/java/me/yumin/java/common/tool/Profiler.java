@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package me.yumin.java.common.tool;
 
@@ -16,7 +16,7 @@ import me.yumin.java.common.util.StringUtil;
  * @author Michael Zhou
  * @version $Id: Profiler.java 1291 2005-03-04 03:23:30Z baobao $
  */
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class Profiler {
     private static final ThreadLocal entryStack = new ThreadLocal();
 
@@ -47,7 +47,7 @@ public class Profiler {
 
     /**
      * 清除计时器。
-     * 
+     * <p/>
      * <p>
      * 清除以后必须再次调用<code>start</code>方可重新计时。
      * </p>
@@ -121,7 +121,6 @@ public class Profiler {
      * 列出所有的entry。
      *
      * @param prefix 前缀
-     *
      * @return 列出所有entry，并统计各自所占用的时间
      */
     public static String dump(String prefix) {
@@ -133,7 +132,6 @@ public class Profiler {
      *
      * @param prefix1 首行前缀
      * @param prefix2 后续行前缀
-     *
      * @return 列出所有entry，并统计各自所占用的时间
      */
     public static String dump(String prefix1, String prefix2) {
@@ -166,7 +164,7 @@ public class Profiler {
 
         if (subEntry != null) {
             do {
-                entry    = subEntry;
+                entry = subEntry;
                 subEntry = entry.getUnreleasedEntry();
             } while (subEntry != null);
         }
@@ -178,28 +176,28 @@ public class Profiler {
      * 代表一个计时单元。
      */
     public static final class Entry {
-        private final List   subEntries  = new ArrayList(4);
+        private final List subEntries = new ArrayList(4);
         private final Object message;
-        private final Entry  parentEntry;
-        private final Entry  firstEntry;
-        private final long   baseTime;
-        private final long   startTime;
-        private long         endTime;
+        private final Entry parentEntry;
+        private final Entry firstEntry;
+        private final long baseTime;
+        private final long startTime;
+        private long endTime;
 
         /**
          * 创建一个新的entry。
          *
-         * @param message entry的信息，可以是<code>null</code>
+         * @param message     entry的信息，可以是<code>null</code>
          * @param parentEntry 父entry，可以是<code>null</code>
-         * @param firstEntry 第一个entry，可以是<code>null</code>
+         * @param firstEntry  第一个entry，可以是<code>null</code>
          */
         private Entry(Object message, Entry parentEntry, Entry firstEntry) {
-            this.message     = message;
-            this.startTime   = System.currentTimeMillis();
+            this.message = message;
+            this.startTime = System.currentTimeMillis();
             this.parentEntry = parentEntry;
-            this.firstEntry  = (Entry) ObjectUtil.defaultIfNull(firstEntry, this);
-            this.baseTime    = (firstEntry == null) ? 0
-                                                    : firstEntry.startTime;
+            this.firstEntry = (Entry) ObjectUtil.defaultIfNull(firstEntry, this);
+            this.baseTime = (firstEntry == null) ? 0
+                    : firstEntry.startTime;
         }
 
         /**
@@ -211,7 +209,7 @@ public class Profiler {
             if (message instanceof String) {
                 messageString = (String) message;
             } else if (message instanceof Message) {
-                Message      messageObject = (Message) message;
+                Message messageObject = (Message) message;
                 MessageLevel level = MessageLevel.BRIEF_MESSAGE;
 
                 if (isReleased()) {
@@ -235,7 +233,7 @@ public class Profiler {
          */
         public long getStartTime() {
             return (baseTime > 0) ? (startTime - baseTime)
-                                  : 0;
+                    : 0;
         }
 
         /**
@@ -400,7 +398,6 @@ public class Profiler {
          *
          * @param prefix1 首行前缀
          * @param prefix2 后续行前缀
-         *
          * @return 字符串表示的entry
          */
         private String toString(String prefix1, String prefix2) {
@@ -414,28 +411,28 @@ public class Profiler {
         /**
          * 将entry转换成字符串的表示。
          *
-         * @param buffer 字符串buffer
+         * @param buffer  字符串buffer
          * @param prefix1 首行前缀
          * @param prefix2 后续行前缀
          */
         private void toString(StringBuffer buffer, String prefix1, String prefix2) {
             buffer.append(prefix1);
 
-            String   message        = getMessage();
-            long     startTime      = getStartTime();
-            long     duration       = getDuration();
-            long     durationOfSelf = getDurationOfSelf();
-            double   percent        = getPecentage();
-            double   percentOfAll   = getPecentageOfAll();
+            String message = getMessage();
+            long startTime = getStartTime();
+            long duration = getDuration();
+            long durationOfSelf = getDurationOfSelf();
+            double percent = getPecentage();
+            double percentOfAll = getPecentageOfAll();
 
-            Object[] params = new Object[] {
-                                  message, // {0} - entry信息 
-            new Long(startTime), // {1} - 起始时间
-            new Long(duration), // {2} - 持续总时间
-            new Long(durationOfSelf), // {3} - 自身消耗的时间
-            new Double(percent), // {4} - 在父entry中所占的时间比例
-            new Double(percentOfAll) // {5} - 在总时间中所旧的时间比例
-                              };
+            Object[] params = new Object[]{
+                    message, // {0} - entry信息
+                    new Long(startTime), // {1} - 起始时间
+                    new Long(duration), // {2} - 持续总时间
+                    new Long(durationOfSelf), // {3} - 自身消耗的时间
+                    new Double(percent), // {4} - 在父entry中所占的时间比例
+                    new Double(percentOfAll) // {5} - 在总时间中所旧的时间比例
+            };
 
             StringBuffer pattern = new StringBuffer("{1,number} ");
 
@@ -481,21 +478,21 @@ public class Profiler {
         }
     }
 
-	/**
-	 * 显示消息的级别。
-	 */
-	public static enum MessageLevel {
-		NO_MESSAGE, BRIEF_MESSAGE, DETAILED_MESSAGE;
-	}
+    /**
+     * 显示消息的级别。
+     */
+    public static enum MessageLevel {
+        NO_MESSAGE, BRIEF_MESSAGE, DETAILED_MESSAGE;
+    }
 
-	/**
-	 * 代表一个profiler entry的详细信息。
-	 */
-	public interface Message {
-		MessageLevel getMessageLevel(Entry entry);
+    /**
+     * 代表一个profiler entry的详细信息。
+     */
+    public interface Message {
+        MessageLevel getMessageLevel(Entry entry);
 
-		String getBriefMessage();
+        String getBriefMessage();
 
-		String getDetailedMessage();
-	}
+        String getDetailedMessage();
+    }
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package me.yumin.java.common.servlet;
 
@@ -24,19 +24,18 @@ import me.yumin.java.common.util.StringUtil;
  * @version $Id: AbstractFilter.java 1038 2004-06-04 07:02:54Z baobao $
  */
 public abstract class AbstractFilter implements Filter {
-    protected final Log log          = LogFactory.getLog(getClass());
-    private FilterConfig   filterConfig;
-    private boolean        eatException;
+    protected final Log log = LogFactory.getLog(getClass());
+    private FilterConfig filterConfig;
+    private boolean eatException;
 
     /**
      * 初始化filter。
      *
      * @param filterConfig filter的配置信息
-     *
      * @throws ServletException 如果初始化失败
      */
     public final void init(FilterConfig filterConfig) throws ServletException {
-        this.filterConfig     = filterConfig;
+        this.filterConfig = filterConfig;
 
         this.eatException = Boolean.valueOf(findInitParameter("eatException", "true")).booleanValue();
 
@@ -82,7 +81,7 @@ public abstract class AbstractFilter implements Filter {
 
     /**
      * 查找指定的filter初始化参数，按如下顺序：
-     * 
+     * <p/>
      * <ol>
      * <li>
      * 查找filter自身的<code>init-param</code>
@@ -94,11 +93,9 @@ public abstract class AbstractFilter implements Filter {
      * 使用指定默认值。
      * </li>
      * </ol>
-     * 
      *
-     * @param paramName 初始化参数名
+     * @param paramName    初始化参数名
      * @param defaultValue 默认值
-     *
      * @return 指定名称所对应的初始化参数值，如果未定义或参数值为空，则返回<code>null</code>。
      */
     public String findInitParameter(String paramName, String defaultValue) {
@@ -121,11 +118,10 @@ public abstract class AbstractFilter implements Filter {
     /**
      * 执行filter.
      *
-     * @param request HTTP请求
+     * @param request  HTTP请求
      * @param response HTTP响应
-     * @param chain filter链
-     *
-     * @throws IOException 处理filter链时发生输入输出错误
+     * @param chain    filter链
+     * @throws IOException      处理filter链时发生输入输出错误
      * @throws ServletException 处理filter链时发生的一般错误
      */
     public final void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -133,7 +129,7 @@ public abstract class AbstractFilter implements Filter {
         // 对于重入的filter，不消化exception。
         // 在weblogic中，servlet forward到jsp时，jsp仍会调用此filter，而jsp抛出的异常就会被该filter捕获。
         if (!(request instanceof HttpServletRequest && response instanceof HttpServletResponse)
-                    || (request.getAttribute(getClass().getName()) != null)) {
+                || (request.getAttribute(getClass().getName()) != null)) {
             chain.doFilter(request, response);
 
             return;
@@ -144,7 +140,7 @@ public abstract class AbstractFilter implements Filter {
 
         try {
             // 执行子类的doFilter
-            HttpServletRequest  req = (HttpServletRequest) request;
+            HttpServletRequest req = (HttpServletRequest) request;
 
             HttpServletResponse res = (HttpServletResponse) response;
 
@@ -161,21 +157,19 @@ public abstract class AbstractFilter implements Filter {
     /**
      * 执行filter.
      *
-     * @param request HTTP请求
+     * @param request  HTTP请求
      * @param response HTTP响应
-     * @param chain filter链
-     *
-     * @throws IOException 处理filter链时发生输入输出错误
+     * @param chain    filter链
+     * @throws IOException      处理filter链时发生输入输出错误
      * @throws ServletException 处理filter链时发生的一般错误
      */
     public abstract void doFilter(HttpServletRequest request, HttpServletResponse response,
-        FilterChain chain) throws IOException, ServletException;
+                                  FilterChain chain) throws IOException, ServletException;
 
     /**
      * 将字符串trim，如果字符串为空白，则返回<code>null</code>。
      *
      * @param str 输入字符串
-     *
      * @return 输出字符串，如果输入字符串为空白，则返回<code>null</code>
      */
     protected String trimToNull(String str) {
@@ -194,7 +188,6 @@ public abstract class AbstractFilter implements Filter {
      * 取得request的内容(HTTP方法, URI)
      *
      * @param request HTTP请求
-     *
      * @return 字符串
      */
     protected String dumpRequest(HttpServletRequest request) {

@@ -1,11 +1,10 @@
 /**
- * 
+ *
  */
 package me.yumin.java.common.util;
 
 /**
  * @author yumin
- * 
  */
 public class ObjectUtil {
 
@@ -19,13 +18,12 @@ public class ObjectUtil {
      * ObjectUtil.defaultIfNull(Boolean.TRUE, *) = Boolean.TRUE
      * </pre>
      *
-     * @param object 要测试的对象
+     * @param object       要测试的对象
      * @param defaultValue 默认值
-     *
      * @return 对象本身或默认对象
      */
     public static Object defaultIfNull(Object object, Object defaultValue) {
         return (object != null) ? object
-                                : defaultValue;
+                : defaultValue;
     }
 }
