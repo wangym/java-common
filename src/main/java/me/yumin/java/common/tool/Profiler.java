@@ -16,7 +16,6 @@ import me.yumin.java.common.util.StringUtil;
  * @author Michael Zhou
  * @version $Id: Profiler.java 1291 2005-03-04 03:23:30Z baobao $
  */
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class Profiler {
     private static final ThreadLocal entryStack = new ThreadLocal();
 
