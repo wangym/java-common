@@ -11,6 +11,7 @@ import org.junit.After;
  * LogUtil Tester.
  *
  * @author yumin
+ * @since 2014-05-05
  */
 public class LogUtilTest {
 
