@@ -1,12 +1,10 @@
-/**
- *
- */
 package me.yumin.java.common.tool;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import me.yumin.java.common.util.ObjectUtil;
 import me.yumin.java.common.util.StringUtil;
 

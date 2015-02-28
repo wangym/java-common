@@ -1,6 +1,3 @@
-/**
- *
- */
 package me.yumin.java.common.util;
 
 import org.apache.commons.logging.Log;

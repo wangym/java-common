@@ -1,11 +1,8 @@
-/**
- *
- */
 package me.yumin.java.common.util;
 
 /**
  * 有关<code>Object</code>处理的工具类。
- *
+ * <p/>
  * <p>
  * 这个类中的每个方法都可以“安全”地处理<code>null</code>，而不会抛出<code>NullPointerException</code>。
  * </p>
@@ -30,7 +27,6 @@ public class ObjectUtil {
      * @return 对象本身或默认对象
      */
     public static Object defaultIfNull(Object object, Object defaultValue) {
-        return (object != null) ? object
-                : defaultValue;
+        return (object != null) ? object : defaultValue;
     }
 }
