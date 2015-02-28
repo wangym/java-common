@@ -8,7 +8,7 @@ import me.yumin.java.common.util.algorithm.IStack;
  * @author java-fries.com, #redactor yumin
  * @since 2015-02-28 15:55
  */
-public class DefaultIStack<T> implements IStack<T> {
+public class DefaultStack<T> implements IStack<T> {
 
     /**
      *
@@ -33,7 +33,7 @@ public class DefaultIStack<T> implements IStack<T> {
     /**
      * @param capacity Stack capacity
      */
-    public DefaultIStack(int capacity) {
+    public DefaultStack(int capacity) {
         this.capacity = capacity;
         elements = new Object[capacity];
     }
@@ -41,7 +41,7 @@ public class DefaultIStack<T> implements IStack<T> {
     /**
      *
      */
-    public DefaultIStack() {
+    public DefaultStack() {
         this.capacity = DEFAULT_CAPACITY;
     }
 

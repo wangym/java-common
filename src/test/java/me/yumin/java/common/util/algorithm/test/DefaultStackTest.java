@@ -2,7 +2,7 @@ package me.yumin.java.common.util.algorithm.test;
 
 import me.yumin.java.common.util.algorithm.exception.StackEmptyException;
 import me.yumin.java.common.util.algorithm.exception.StackFullException;
-import me.yumin.java.common.util.algorithm.impl.DefaultIStack;
+import me.yumin.java.common.util.algorithm.impl.DefaultStack;
 
 /**
  * @author java-fries.com, #redactor yumin
@@ -14,7 +14,7 @@ public class DefaultStackTest {
      * @param args Args
      */
     public static void main(String[] args) {
-        DefaultIStack<Integer> stack = new DefaultIStack<Integer>(4);
+        DefaultStack<Integer> stack = new DefaultStack<Integer>(4);
         checkStackEmpty(stack);
         try {
             pushOnStackUntillStackIsFull(stack);
@@ -34,7 +34,7 @@ public class DefaultStackTest {
     /**
      * @param stack Stack
      */
-    private static void popElements(DefaultIStack<Integer> stack) {
+    private static void popElements(DefaultStack<Integer> stack) {
         System.out.println(stack.pop());
         System.out.println(stack.pop());
         System.out.println(stack.pop());
@@ -45,7 +45,7 @@ public class DefaultStackTest {
     /**
      * @param stack Stack
      */
-    private static void pushOnStackUntillStackIsFull(DefaultIStack<Integer> stack) {
+    private static void pushOnStackUntillStackIsFull(DefaultStack<Integer> stack) {
         stack.push(4);
         stack.push(7);
         stack.push(3);
@@ -56,7 +56,7 @@ public class DefaultStackTest {
     /**
      * @param stack Stack
      */
-    private static void checkStackEmpty(DefaultIStack<Integer> stack) {
+    private static void checkStackEmpty(DefaultStack<Integer> stack) {
         System.out.println("Is stack empty : " + stack.isEmpty());
     }
 }
