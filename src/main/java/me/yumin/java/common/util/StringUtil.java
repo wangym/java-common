@@ -7,10 +7,13 @@ package me.yumin.java.common.util;
  * 这个类中的每个方法都可以“安全”地处理<code>null</code>，而不会抛出<code>NullPointerException</code>。
  * </p>
  *
- * @author Michael Zhou
+ * @author Michael Zhou, #redactor yumin
  * @version $Id: StringUtil.java 1149 2004-08-10 02:01:41Z baobao $
  */
 public class StringUtil {
+
+    private StringUtil() {
+    }
 
     /**
      *

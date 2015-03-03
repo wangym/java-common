@@ -11,6 +11,9 @@ import org.apache.commons.logging.Log;
  */
 public class LogUtil {
 
+    private LogUtil() {
+    }
+
     /**
      * @param log
      * @param message
