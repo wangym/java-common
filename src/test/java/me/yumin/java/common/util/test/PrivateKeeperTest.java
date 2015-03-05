@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author xuanyin
+ * @author yumin
  * @since 2015-03-02 14:53
  */
 public class PrivateKeeperTest {
@@ -47,6 +47,24 @@ public class PrivateKeeperTest {
 
         System.out.println("[testSetFieldValue]" + result);
         Assert.assertEquals(fieldValue, result);
+    }
+
+    @Test
+    public void testInvokeMethod() throws Exception {
+        String whatIsYourName = null;
+        String whereAreYouFrom = null;
+        String fieldName = "name";
+        Object fieldValue = "yumin";
+        Person person = new Person();
+
+        if (PrivateKeeper.setFieldValue(person, fieldName, fieldValue)) {
+            whatIsYourName = (String) PrivateKeeper.invokeMethod(person, "whatIsYourName", null, null);
+            whereAreYouFrom = (String) PrivateKeeper.invokeMethod(person, "whereAreYouFrom", null, null);
+        }
+
+        System.out.println("[testInvokeMethod.whatIsYourName]" + whatIsYourName);
+        System.out.println("[testInvokeMethod.whereAreYouFrom]" + whereAreYouFrom);
+        Assert.assertEquals("My name is " + fieldValue, whatIsYourName);
     }
 
     /**
