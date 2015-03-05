@@ -12,6 +12,8 @@ public class PrivateKeeper {
     }
 
     /**
+     * Getting field values
+     *
      * @param object    Java object
      * @param fieldName 类私有属性名
      * @return 属性值
@@ -34,6 +36,8 @@ public class PrivateKeeper {
     }
 
     /**
+     * Setting field values
+     *
      * @param object     Java object
      * @param fieldName  类私有属性名
      * @param fieldValue 属性值
@@ -45,7 +49,7 @@ public class PrivateKeeper {
         if (null != object) {
             try {
                 Field field = getDeclaredField(object, fieldName);
-                field.set(fieldName, fieldValue);
+                field.set(object, fieldValue);
                 result = true;
             } catch (NoSuchFieldException ex) {
                 ex.printStackTrace();
@@ -58,12 +62,14 @@ public class PrivateKeeper {
     }
 
     /**
+     * Getting field object
+     *
      * @param object    Java object
      * @param fieldName 类私有属性名
      * @return Field object
      * @throws NoSuchFieldException
      */
-    private static Field getDeclaredField(Object object, String fieldName) throws NoSuchFieldException {
+    public static Field getDeclaredField(Object object, String fieldName) throws NoSuchFieldException {
         Field field = null;
 
         if (null != object) {

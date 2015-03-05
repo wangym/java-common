@@ -14,9 +14,9 @@ public class PrivateKeeperTest {
     public void testGetFieldValueForPrivate() throws Exception {
         String fieldName = "name";
         String fieldValue = "yumin";
-
         Person person = new Person();
         person.setName(fieldValue);
+
         String result = (String) PrivateKeeper.getFieldValue(person, fieldName);
 
         System.out.println("[testGetFieldValueForPrivate]" + result);
@@ -28,10 +28,24 @@ public class PrivateKeeperTest {
         String fieldName = "country";
         String fieldValue = "china";
 
-        Person person = new Person();
-        String result = (String) PrivateKeeper.getFieldValue(person, fieldName);
+        String result = (String) PrivateKeeper.getFieldValue(new Person(), fieldName);
 
         System.out.println("[testGetFieldValueForProtected]" + result);
+        Assert.assertEquals(fieldValue, result);
+    }
+
+    @Test
+    public void testSetFieldValue() throws Exception {
+        String result = null;
+        String fieldName = "name";
+        Object fieldValue = "yumin";
+        Person person = new Person();
+
+        if (PrivateKeeper.setFieldValue(person, fieldName, fieldValue)) {
+            result = (String) PrivateKeeper.getFieldValue(person, fieldName);
+        }
+
+        System.out.println("[testSetFieldValue]" + result);
         Assert.assertEquals(fieldValue, result);
     }
 
