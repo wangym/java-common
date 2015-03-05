@@ -60,6 +60,7 @@ public class DefaultStack<T> implements IStack<T> {
         }
         T element = (T) elements[top];
         elements[top--] = null;
+
         return element;
     }
 
@@ -68,6 +69,7 @@ public class DefaultStack<T> implements IStack<T> {
         if (-1 == top) {
             throw new StackEmptyException();
         }
+        
         return (T) elements[top];
     }
 
