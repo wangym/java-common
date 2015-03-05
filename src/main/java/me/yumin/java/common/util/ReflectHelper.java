@@ -8,9 +8,9 @@ import java.lang.reflect.Method;
  * @author yumin
  * @since 2015-03-02 14:52
  */
-public class PrivateKeeper {
+public class ReflectHelper {
 
-    private PrivateKeeper() {
+    private ReflectHelper() {
     }
 
     /**

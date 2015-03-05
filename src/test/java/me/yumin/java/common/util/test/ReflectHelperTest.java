@@ -1,6 +1,6 @@
 package me.yumin.java.common.util.test;
 
-import me.yumin.java.common.util.PrivateKeeper;
+import me.yumin.java.common.util.ReflectHelper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ import org.junit.Test;
  * @author yumin
  * @since 2015-03-02 14:53
  */
-public class PrivateKeeperTest {
+public class ReflectHelperTest {
 
     @Test
     public void testGetFieldValueForPrivate() throws Exception {
@@ -17,7 +17,7 @@ public class PrivateKeeperTest {
         Person person = new Person();
         person.setName(fieldValue);
 
-        String result = (String) PrivateKeeper.getFieldValue(person, fieldName);
+        String result = (String) ReflectHelper.getFieldValue(person, fieldName);
 
         System.out.println("[testGetFieldValueForPrivate]" + result);
         Assert.assertEquals(fieldValue, result);
@@ -28,7 +28,7 @@ public class PrivateKeeperTest {
         String fieldName = "country";
         String fieldValue = "china";
 
-        String result = (String) PrivateKeeper.getFieldValue(new Person(), fieldName);
+        String result = (String) ReflectHelper.getFieldValue(new Person(), fieldName);
 
         System.out.println("[testGetFieldValueForProtected]" + result);
         Assert.assertEquals(fieldValue, result);
@@ -41,8 +41,8 @@ public class PrivateKeeperTest {
         Object fieldValue = "yumin";
         Person person = new Person();
 
-        if (PrivateKeeper.setFieldValue(person, fieldName, fieldValue)) {
-            result = (String) PrivateKeeper.getFieldValue(person, fieldName);
+        if (ReflectHelper.setFieldValue(person, fieldName, fieldValue)) {
+            result = (String) ReflectHelper.getFieldValue(person, fieldName);
         }
 
         System.out.println("[testSetFieldValue]" + result);
@@ -57,9 +57,9 @@ public class PrivateKeeperTest {
         Object fieldValue = "yumin";
         Person person = new Person();
 
-        if (PrivateKeeper.setFieldValue(person, fieldName, fieldValue)) {
-            whatIsYourName = (String) PrivateKeeper.invokeMethod(person, "whatIsYourName", null, null);
-            whereAreYouFrom = (String) PrivateKeeper.invokeMethod(person, "whereAreYouFrom", null, null);
+        if (ReflectHelper.setFieldValue(person, fieldName, fieldValue)) {
+            whatIsYourName = (String) ReflectHelper.invokeMethod(person, "whatIsYourName", null, null);
+            whereAreYouFrom = (String) ReflectHelper.invokeMethod(person, "whereAreYouFrom", null, null);
         }
 
         System.out.println("[testInvokeMethod.whatIsYourName]" + whatIsYourName);
