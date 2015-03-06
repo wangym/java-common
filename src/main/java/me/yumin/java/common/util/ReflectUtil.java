@@ -8,9 +8,9 @@ import java.lang.reflect.Method;
  * @author yumin
  * @since 2015-03-02 14:52
  */
-public class ReflectHelper {
+public class ReflectUtil {
 
-    private ReflectHelper() {
+    private ReflectUtil() {
     }
 
     /**
@@ -28,9 +28,9 @@ public class ReflectHelper {
                 Field field = getDeclaredField(object, fieldName);
                 fieldValue = field.get(object);
             } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+                LogUtil.error(e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                LogUtil.error(e);
             }
         }
 
@@ -43,7 +43,7 @@ public class ReflectHelper {
      * @param object     Java object
      * @param fieldName  类私有属性名
      * @param fieldValue 属性值
-     * @return boolean true|false
+     * @return true|false
      */
     public static boolean setFieldValue(Object object, String fieldName, Object fieldValue) {
         boolean result = false;
@@ -54,9 +54,9 @@ public class ReflectHelper {
                 field.set(object, fieldValue);
                 result = true;
             } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+                LogUtil.error(e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                LogUtil.error(e);
             }
         }
 
@@ -70,7 +70,7 @@ public class ReflectHelper {
      * @param methodName     方法名称
      * @param parameterTypes 入参类型
      * @param args           入参对象
-     * @return Object 执行结果
+     * @return 执行结果对象
      */
     public static Object invokeMethod(Object object, String methodName, Class[] parameterTypes, Object[] args) {
         Object result = null;
@@ -80,11 +80,11 @@ public class ReflectHelper {
                 Method method = getDeclaredMethod(object, methodName, parameterTypes);
                 result = method.invoke(object, args);
             } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+                LogUtil.error(e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                LogUtil.error(e);
             } catch (InvocationTargetException e) {
-                e.printStackTrace();
+                LogUtil.error(e);
             }
 
         }
