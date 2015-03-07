@@ -18,7 +18,6 @@ public class ReflectUtilTest {
 
         String result = (String) ReflectUtil.getFieldValue(person, "name");
 
-        System.out.println("[testGetFieldValueForPrivate]" + result);
         Assert.assertEquals(fieldValue, result);
     }
 
@@ -26,7 +25,6 @@ public class ReflectUtilTest {
     public void testGetFieldValueForProtected() throws Exception {
         String result = (String) ReflectUtil.getFieldValue(new Person(), "country");
 
-        System.out.println("[testGetFieldValueForProtected]" + result);
         Assert.assertEquals("china", result);
     }
 
@@ -41,7 +39,6 @@ public class ReflectUtilTest {
             result = (String) ReflectUtil.getFieldValue(person, fieldName);
         }
 
-        System.out.println("[testSetFieldValue]" + result);
         Assert.assertEquals(fieldValue, result);
     }
 
@@ -56,15 +53,12 @@ public class ReflectUtilTest {
         Person person = new Person();
 
         if (ReflectUtil.setFieldValue(person, "name", name)) {
+            country = (String) ReflectUtil.getFieldValue(person, "country");
             whatIsYourName = (String) ReflectUtil.invokeMethod(person, "whatIsYourName", null, null);
             whereAreYouFrom = (String) ReflectUtil.invokeMethod(person, "whereAreYouFrom", null, null);
             howOldAreYou = (String) ReflectUtil.invokeMethod(person, "howOldAreYou", new Class[]{int.class}, new Object[]{age});
-            country = (String) ReflectUtil.getFieldValue(person, "country");
         }
 
-        System.out.println("[testInvokeMethod.whatIsYourName]" + whatIsYourName);
-        System.out.println("[testInvokeMethod.whereAreYouFrom]" + whereAreYouFrom);
-        System.out.println("[testInvokeMethod.howOldAreYou]" + howOldAreYou);
         Assert.assertEquals(Person.whatIsYourName + name, whatIsYourName);
         Assert.assertEquals(Person.whereAreYouFrom + country, whereAreYouFrom);
         Assert.assertEquals(Person.howOldAreYou + age, howOldAreYou);
