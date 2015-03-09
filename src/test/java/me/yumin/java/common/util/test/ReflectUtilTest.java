@@ -43,36 +43,55 @@ public class ReflectUtilTest {
     }
 
     @Test
+    public void testGetAndSetFieldValue() throws Exception {
+        SexEnum result = null;
+        String fieldName = "sex";
+        SexEnum fieldValue = SexEnum.MALE;
+        Person person = new Person();
+
+        if (ReflectUtil.setFieldValue(person, fieldName, fieldValue)) {
+            result = (SexEnum) ReflectUtil.getFieldValue(person, fieldName);
+        }
+
+        Assert.assertEquals(fieldValue, result);
+    }
+
+    @Test
     public void testInvokeMethod() throws Exception {
         String whatIsYourName = null;
-        String whereAreYouFrom = null;
         String howOldAreYou = null;
+        String whereAreYouFrom = null;
         String name = "yumin";
-        String country = null;
         int age = 18;
+        String country = null;
         Person person = new Person();
 
         if (ReflectUtil.setFieldValue(person, "name", name)) {
-            country = (String) ReflectUtil.getFieldValue(person, "country");
             whatIsYourName = (String) ReflectUtil.invokeMethod(person, "whatIsYourName", null, null);
-            whereAreYouFrom = (String) ReflectUtil.invokeMethod(person, "whereAreYouFrom", null, null);
             howOldAreYou = (String) ReflectUtil.invokeMethod(person, "howOldAreYou", new Class[]{int.class}, new Object[]{age});
+            country = (String) ReflectUtil.getFieldValue(person, "country");
+            whereAreYouFrom = (String) ReflectUtil.invokeMethod(person, "whereAreYouFrom", null, null);
         }
 
         Assert.assertEquals(Person.whatIsYourName + name, whatIsYourName);
-        Assert.assertEquals(Person.whereAreYouFrom + country, whereAreYouFrom);
         Assert.assertEquals(Person.howOldAreYou + age, howOldAreYou);
+        Assert.assertEquals(Person.whereAreYouFrom + country, whereAreYouFrom);
     }
 
     /**
      * 测试用类
      */
+    enum SexEnum {
+        MALE, FEMALE
+    }
+
     public class Person {
 
         public static final String whatIsYourName = "My name is ";
-        public static final String whereAreYouFrom = "I'm from ";
         public static final String howOldAreYou = "I'm ";
+        public static final String whereAreYouFrom = "I'm from ";
         private String name; // 姓名
+        private SexEnum sex;
         protected String country = "china"; // 国家
 
         public void setName(String name) {
@@ -83,12 +102,12 @@ public class ReflectUtilTest {
             return whatIsYourName + name;
         }
 
-        private String whereAreYouFrom() {
-            return whereAreYouFrom + country;
-        }
-
         private String howOldAreYou(int age) {
             return howOldAreYou + age;
+        }
+
+        private String whereAreYouFrom() {
+            return whereAreYouFrom + country;
         }
     }
 }
