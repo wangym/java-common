@@ -6,4 +6,6 @@
 /target/
 *.iml
 .classpath
+.DS_Store
 .project
+
