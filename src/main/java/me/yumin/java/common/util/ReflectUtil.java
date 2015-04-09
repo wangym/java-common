@@ -93,6 +93,22 @@ public class ReflectUtil {
     }
 
     /**
+     * Invoking methods plus
+     *
+     * @param object Java object
+     * @return 执行结果对象
+     */
+    public static Object invokeMethodPlus(Object object) {
+        Object result = null;
+
+        if (null != object) {
+            System.out.println(object);
+        }
+
+        return result;
+    }
+
+    /**
      * Getting field object
      *
      * @param object    Java object

@@ -1,7 +1,7 @@
 /**
  *
  */
-package me.yumin.java.common.test;
+package test;
 
 import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
 import org.openjdk.jmh.runner.Runner;

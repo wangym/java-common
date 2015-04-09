@@ -78,6 +78,17 @@ public class ReflectUtilTest {
         Assert.assertEquals(Person.whereAreYouFrom + country, whereAreYouFrom);
     }
 
+    @Test
+    public void testInvokeMethodPlus() throws Exception {
+        String howOldAreYou = null;
+        int age = 18;
+        Person person = new Person();
+
+        howOldAreYou = (String) ReflectUtil.invokeMethodPlus(person.howOldAreYou(age));
+
+        Assert.assertEquals(Person.howOldAreYou + age, howOldAreYou);
+    }
+
     /**
      * 测试用类
      */
