@@ -5,16 +5,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * @author yumin
+ * @author chinawym@gmail.com
  * @since 2015-03-02 14:52
  */
 public class ReflectUtil {
-
     private ReflectUtil() {
     }
 
     /**
-     * Getting field values
+     * Getting field value
      *
      * @param object    Java object
      * @param fieldName 类私有属性名
@@ -38,7 +37,7 @@ public class ReflectUtil {
     }
 
     /**
-     * Setting field values
+     * Setting field value
      *
      * @param object     Java object
      * @param fieldName  类私有属性名
@@ -64,7 +63,7 @@ public class ReflectUtil {
     }
 
     /**
-     * Invoking methods
+     * Invoking method
      *
      * @param object         Java object
      * @param methodName     方法名称
@@ -93,16 +92,28 @@ public class ReflectUtil {
     }
 
     /**
-     * Invoking methods plus
+     * Invoking method plus
      *
-     * @param object Java object
+     * @param object     Java object
+     * @param methodName 方法名称
+     * @param args       入参对象
      * @return 执行结果对象
      */
-    public static Object invokeMethodPlus(Object object) {
+    public static Object invokeMethodPlus(Object object, String methodName, Object[] args) {
         Object result = null;
 
         if (null != object) {
-            System.out.println(object);
+            try {
+                Method method = getDeclaredMethod(object, methodName, parameterTypes);
+                result = method.invoke(object, args);
+            } catch (NoSuchMethodException e) {
+                LogUtil.error(e);
+            } catch (IllegalAccessException e) {
+                LogUtil.error(e);
+            } catch (InvocationTargetException e) {
+                LogUtil.error(e);
+            }
+
         }
 
         return result;

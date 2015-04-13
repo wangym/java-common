@@ -9,7 +9,6 @@ import me.yumin.java.common.util.algorithm.impl.DefaultStack;
  * @since 2015-02-28 16:17
  */
 public class DefaultStackTest {
-
     /**
      * @param args Args
      */

@@ -1,7 +1,7 @@
 /**
  *
  */
-package me.yumin.java.common.util.test;
+package me.yumin.java.common.util;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -10,11 +10,10 @@ import org.junit.After;
 /**
  * LogUtil Tester.
  *
- * @author yumin
+ * @author chinawym@gmail.com
  * @since 2014-05-05
  */
 public class LogUtilTest {
-
     @Before
     public void before() throws Exception {
     }

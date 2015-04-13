@@ -5,11 +5,10 @@ import me.yumin.java.common.util.algorithm.exception.StackFullException;
 import me.yumin.java.common.util.algorithm.IStack;
 
 /**
- * @author java-fries.com, #redactor yumin
+ * @author java-fries.com, #redactor chinawym@gmail.com
  * @since 2015-02-28 15:55
  */
 public class DefaultStack<T> implements IStack<T> {
-
     /**
      *
      */

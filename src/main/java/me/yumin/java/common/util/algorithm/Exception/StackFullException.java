@@ -1,11 +1,10 @@
 package me.yumin.java.common.util.algorithm.exception;
 
 /**
- * @author java-fries.com, #redactor yumin
+ * @author java-fries.com, #redactor chinawym@gmail.com
  * @since 2015-02-28 16:00
  */
 public class StackFullException extends RuntimeException {
-
     /**
      *
      */

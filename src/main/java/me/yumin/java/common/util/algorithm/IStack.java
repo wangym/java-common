@@ -7,7 +7,6 @@ import me.yumin.java.common.util.algorithm.exception.StackEmptyException;
  * @since 2015-02-28 15:50
  */
 public interface IStack<T> {
-
     /**
      * @param item Push item
      */

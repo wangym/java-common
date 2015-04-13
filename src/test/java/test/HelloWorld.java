@@ -10,11 +10,10 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 /**
- * @author yumin
+ * @author chinawym@gmail.com
  * @since 2014-08-18
  */
 public class HelloWorld {
-
     @GenerateMicroBenchmark
     public void wellHelloThere() {
         // this method was intentionally left blank.

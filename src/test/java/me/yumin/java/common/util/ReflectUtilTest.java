@@ -1,15 +1,15 @@
-package me.yumin.java.common.util.test;
+package me.yumin.java.common.util;
 
-import me.yumin.java.common.util.ReflectUtil;
 import org.junit.Assert;
 import org.junit.Test;
+import pojo.Person;
+import pojo.SexEnum;
 
 /**
- * @author yumin
+ * @author chinawym@gmail.com
  * @since 2015-03-02 14:53
  */
 public class ReflectUtilTest {
-
     @Test
     public void testGetFieldValueForPrivate() throws Exception {
         String fieldValue = "yumin";
@@ -84,41 +84,8 @@ public class ReflectUtilTest {
         int age = 18;
         Person person = new Person();
 
-        howOldAreYou = (String) ReflectUtil.invokeMethodPlus(person.howOldAreYou(age));
+        howOldAreYou = (String) ReflectUtil.invokeMethodPlus(person, "howOldAreYou", new Object[]{age});
 
         Assert.assertEquals(Person.howOldAreYou + age, howOldAreYou);
-    }
-
-    /**
-     * 测试用类
-     */
-    enum SexEnum {
-        MALE, FEMALE
-    }
-
-    public class Person {
-
-        public static final String whatIsYourName = "My name is ";
-        public static final String howOldAreYou = "I'm ";
-        public static final String whereAreYouFrom = "I'm from ";
-        private String name; // 姓名
-        private SexEnum sex;
-        protected String country = "china"; // 国家
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        private String whatIsYourName() {
-            return whatIsYourName + name;
-        }
-
-        private String howOldAreYou(int age) {
-            return howOldAreYou + age;
-        }
-
-        private String whereAreYouFrom() {
-            return whereAreYouFrom + country;
-        }
     }
 }
