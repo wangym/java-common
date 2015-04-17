@@ -99,7 +99,7 @@ public class ReflectUtil {
      * @param args       入参对象
      * @return 执行结果对象
      */
-    public static Object invokeMethodPlus(Object object, String methodName, Object[] args) {
+    public static Object invokeMethodPlus(Object object, String methodName, Object... args) {
         Object result = null;
 
         if (null != object) {
