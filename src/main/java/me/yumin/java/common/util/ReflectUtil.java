@@ -99,21 +99,23 @@ public class ReflectUtil {
      * @param args       入参对象
      * @return 执行结果对象
      */
-    public static Object invokeMethodPlus(Object object, String methodName, Object... args) {
+    public static Object invokeMethodPlus(Object object, String methodName, Object... args) throws NoSuchFieldException, IllegalAccessException {
         Object result = null;
 
-        if (null != object) {
-            try {
-                Method method = getDeclaredMethod(object, methodName, parameterTypes);
-                result = method.invoke(object, args);
-            } catch (NoSuchMethodException e) {
-                LogUtil.error(e);
-            } catch (IllegalAccessException e) {
-                LogUtil.error(e);
-            } catch (InvocationTargetException e) {
-                LogUtil.error(e);
+        if (null != object && null != args) {
+            int argsLength = args.length;
+            Class[] parameterTypes = new Class[argsLength];
+            Object[] parameterValues = new Object[argsLength];
+            for (int i = 0; i < argsLength; i++) {
+                parameterTypes[i] = args[i].getClass();
+                Field field = args[i].getClass().getDeclaredField("TYPE");
+                if (null != field) {
+                    parameterTypes[i] = (Class) field.get("NULL");
+                }
+                parameterValues[i] = args[i];
+                System.out.println(parameterTypes[i] + "~" + parameterValues[i]);
             }
-
+            result = invokeMethod(object, methodName, parameterTypes, parameterValues);
         }
 
         return result;

@@ -84,7 +84,7 @@ public class ReflectUtilTest {
         int age = 18;
         Person person = new Person();
 
-        howOldAreYou = (String) ReflectUtil.invokeMethodPlus(person, "howOldAreYou", new Object[]{age});
+        howOldAreYou = (String) ReflectUtil.invokeMethodPlus(person, "howOldAreYou", age);
 
         Assert.assertEquals(Person.howOldAreYou + age, howOldAreYou);
     }
