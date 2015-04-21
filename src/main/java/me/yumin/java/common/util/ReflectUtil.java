@@ -1,8 +1,8 @@
 package me.yumin.java.common.util;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author chinawym@gmail.com
@@ -22,15 +22,13 @@ public class ReflectUtil {
     public static Object getFieldValue(Object object, String fieldName) {
         Object fieldValue = null;
 
-        if (null != object) {
-            try {
-                Field field = getDeclaredField(object, fieldName);
-                fieldValue = field.get(object);
-            } catch (NoSuchFieldException e) {
-                LogUtil.error(e);
-            } catch (IllegalAccessException e) {
-                LogUtil.error(e);
-            }
+        try {
+            Field field = getDeclaredField(object, fieldName);
+            fieldValue = field.get(object);
+        } catch (NoSuchFieldException e) {
+            LogUtil.error(e);
+        } catch (IllegalAccessException e) {
+            LogUtil.error(e);
         }
 
         return fieldValue;
@@ -47,16 +45,14 @@ public class ReflectUtil {
     public static boolean setFieldValue(Object object, String fieldName, Object fieldValue) {
         boolean result = false;
 
-        if (null != object) {
-            try {
-                Field field = getDeclaredField(object, fieldName);
-                field.set(object, fieldValue);
-                result = true;
-            } catch (NoSuchFieldException e) {
-                LogUtil.error(e);
-            } catch (IllegalAccessException e) {
-                LogUtil.error(e);
-            }
+        try {
+            Field field = getDeclaredField(object, fieldName);
+            field.set(object, fieldValue);
+            result = true;
+        } catch (NoSuchFieldException e) {
+            LogUtil.error(e);
+        } catch (IllegalAccessException e) {
+            LogUtil.error(e);
         }
 
         return result;
@@ -74,18 +70,15 @@ public class ReflectUtil {
     public static Object invokeMethod(Object object, String methodName, Class[] parameterTypes, Object[] args) {
         Object result = null;
 
-        if (null != object) {
-            try {
-                Method method = getDeclaredMethod(object, methodName, parameterTypes);
-                result = method.invoke(object, args);
-            } catch (NoSuchMethodException e) {
-                LogUtil.error(e);
-            } catch (IllegalAccessException e) {
-                LogUtil.error(e);
-            } catch (InvocationTargetException e) {
-                LogUtil.error(e);
-            }
-
+        try {
+            Method method = getDeclaredMethod(object, methodName, parameterTypes);
+            result = method.invoke(object, args);
+        } catch (NoSuchMethodException e) {
+            LogUtil.error(e);
+        } catch (IllegalAccessException e) {
+            LogUtil.error(e);
+        } catch (InvocationTargetException e) {
+            LogUtil.error(e);
         }
 
         return result;
@@ -99,23 +92,30 @@ public class ReflectUtil {
      * @param args       入参对象
      * @return 执行结果对象
      */
-    public static Object invokeMethodPlus(Object object, String methodName, Object... args) throws NoSuchFieldException, IllegalAccessException {
+    public static Object invokeMethodPlus(Object object, String methodName, Object... args) {
         Object result = null;
 
-        if (null != object && null != args) {
-            int argsLength = args.length;
-            Class[] parameterTypes = new Class[argsLength];
-            Object[] parameterValues = new Object[argsLength];
-            for (int i = 0; i < argsLength; i++) {
-                parameterTypes[i] = args[i].getClass();
-                Field field = args[i].getClass().getDeclaredField("TYPE");
-                if (null != field) {
-                    parameterTypes[i] = (Class) field.get("NULL");
+        if (null != args) {
+            int length = args.length;
+            Class[] types = new Class[length];
+            Object[] values = new Object[length];
+            for (int i = 0; i < length; i++) {
+                types[i] = args[i].getClass();
+                values[i] = args[i];
+                // 原始类型修补
+                Field[] fields = types[i].getFields();
+                for (Field field : fields) {
+                    if ("TYPE".equalsIgnoreCase(field.getName())) {
+                        try {
+                            types[i] = (Class) field.get(null);
+                        } catch (IllegalAccessException e) {
+                            LogUtil.error(e);
+                        }
+                    }
                 }
-                parameterValues[i] = args[i];
-                System.out.println(parameterTypes[i] + "~" + parameterValues[i]);
+
             }
-            result = invokeMethod(object, methodName, parameterTypes, parameterValues);
+            result = invokeMethod(object, methodName, types, values);
         }
 
         return result;
@@ -129,10 +129,10 @@ public class ReflectUtil {
      * @return Field object
      * @throws NoSuchFieldException
      */
-    public static Field getDeclaredField(Object object, String fieldName) throws NoSuchFieldException {
+    private static Field getDeclaredField(Object object, String fieldName) throws NoSuchFieldException {
         Field field = null;
 
-        if (null != object) {
+        if (null != object && (null != fieldName && 0 < fieldName.length())) {
             field = object.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
         }
@@ -149,10 +149,10 @@ public class ReflectUtil {
      * @return Method object
      * @throws NoSuchMethodException
      */
-    public static Method getDeclaredMethod(Object object, String methodName, Class[] parameterTypes) throws NoSuchMethodException {
+    private static Method getDeclaredMethod(Object object, String methodName, Class[] parameterTypes) throws NoSuchMethodException {
         Method method = null;
 
-        if (null != object) {
+        if (null != object && (null != methodName && 0 < methodName.length())) {
             method = object.getClass().getDeclaredMethod(methodName, parameterTypes);
             method.setAccessible(true);
         }

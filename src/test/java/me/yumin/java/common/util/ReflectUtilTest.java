@@ -79,13 +79,23 @@ public class ReflectUtilTest {
     }
 
     @Test
-    public void testInvokeMethodPlus() throws Exception {
-        String howOldAreYou = null;
+    public void testInvokeMethodPlusForInt() throws Exception {
         int age = 18;
         Person person = new Person();
 
-        howOldAreYou = (String) ReflectUtil.invokeMethodPlus(person, "howOldAreYou", age);
+        String howOldAreYou = (String) ReflectUtil.invokeMethodPlus(person, "howOldAreYou", age);
 
         Assert.assertEquals(Person.howOldAreYou + age, howOldAreYou);
+    }
+
+    @Test
+    public void testInvokeMethodPlusForString() throws Exception {
+        String name = "xuanyin";
+        Person person = new Person();
+
+        ReflectUtil.invokeMethodPlus(person, "setName", name);
+        String whatIsYourName = (String) ReflectUtil.invokeMethodPlus(person, "whatIsYourName");
+
+        Assert.assertEquals(Person.whatIsYourName + name, whatIsYourName);
     }
 }
