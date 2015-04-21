@@ -3,7 +3,7 @@
  */
 package test;
 
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
@@ -14,7 +14,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
  * @since 2014-08-18
  */
 public class HelloWorld {
-    @GenerateMicroBenchmark
+    @Benchmark
     public void wellHelloThere() {
         // this method was intentionally left blank.
     }
