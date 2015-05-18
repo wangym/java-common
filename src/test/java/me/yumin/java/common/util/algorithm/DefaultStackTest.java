@@ -1,4 +1,4 @@
-package me.yumin.java.common.util.algorithm.test;
+package me.yumin.java.common.util.algorithm;
 
 import me.yumin.java.common.util.algorithm.exception.StackEmptyException;
 import me.yumin.java.common.util.algorithm.exception.StackFullException;
