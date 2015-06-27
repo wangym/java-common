@@ -1,4 +1,4 @@
-package me.yumin.java.common.tool;
+package me.yumin.java.common.util;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
