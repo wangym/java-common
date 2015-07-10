@@ -4,15 +4,17 @@ package me.yumin.java.common.util;
  * @author chinawym@gmail.com
  * @since 2015-06-16
  */
-public abstract class AssertUtil {
-    protected AssertUtil() {
+public class Assert {
+    private Assert() {
     }
 
     /**
-     * @param object
+     * @param objects
      */
-    public static void notNull(Object object) {
-        notNull(object, null);
+    public static void notNull(Object... objects) {
+        for (Object object : objects) {
+            notNull(object, null);
+        }
     }
 
     /**
@@ -44,9 +46,6 @@ public abstract class AssertUtil {
      * @param message
      */
     private static void exception(String message) {
-        if (null == message) {
-            throw new IllegalArgumentException();
-        }
         throw new IllegalArgumentException(message);
     }
 }

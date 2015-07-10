@@ -13,7 +13,7 @@ import org.junit.After;
  * @author chinawym@gmail.com
  * @since 2014-05-05
  */
-public class LogUtilTest {
+public class LogTest {
     @Before
     public void before() throws Exception {
     }

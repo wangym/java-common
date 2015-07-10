@@ -1,6 +1,5 @@
 package me.yumin.java.common.util;
 
-import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
@@ -10,11 +9,11 @@ import org.apache.commons.logging.LogFactory;
  * @author chinawym@gmail.com
  * @since 2014-05-05
  */
-public class LogUtil {
+public class Log {
     // log for class
-    private static final Log LOG = LogFactory.getLog(LogUtil.class);
+    private static final org.apache.commons.logging.Log LOG = LogFactory.getLog(Log.class);
 
-    private LogUtil() {
+    private Log() {
     }
 
     /**
