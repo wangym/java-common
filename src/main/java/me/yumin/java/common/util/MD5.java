@@ -3,7 +3,7 @@ package me.yumin.java.common.util;
 import java.security.MessageDigest;
 
 /**
- * @author xuanyin
+ * @author chinawym@gmail.com
  * @since 2015-07-09
  */
 public class MD5 {

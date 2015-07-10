@@ -21,6 +21,46 @@ public class StringUtil {
     public static final String NULL = null;
 
     /**
+     * @param string
+     * @return
+     */
+    public static boolean isEmpty(String string) {
+        return (!isNotEmpty(string));
+    }
+
+    /**
+     * @param string
+     * @return
+     */
+    public static boolean isNotEmpty(String string) {
+        return (null != string && 0 < string.length());
+    }
+
+    /**
+     * @param args
+     * @return
+     */
+    public static boolean isNotEmpty(String... args) {
+        boolean result = false;
+
+        if (null != args && 0 < args.length) {
+            int i = 0;
+            for (String string : args) {
+                if (isEmpty(string)) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+            if (i == args.length) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * 如果字符串是<code>null</code>或空字符串<code>""</code>，则返回指定默认字符串，否则返回字符串本身。
      * <pre>
      * StringUtil.defaultIfEmpty(null, "default")  = "default"
