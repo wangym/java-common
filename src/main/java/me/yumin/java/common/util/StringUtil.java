@@ -29,6 +29,14 @@ public class StringUtil {
     }
 
     /**
+     * @param args
+     * @return
+     */
+    public static boolean isEmpty(String... args) {
+        return (!isNotEmpty(args));
+    }
+
+    /**
      * @param string
      * @return
      */
@@ -53,6 +61,22 @@ public class StringUtil {
                 }
             }
             if (i == args.length) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * @param json
+     * @return
+     */
+    public static boolean isJSON(String json) {
+        boolean result = false;
+
+        if (isNotEmpty(json)) {
+            if (json.startsWith("{") && json.endsWith("}")) {
                 result = true;
             }
         }
