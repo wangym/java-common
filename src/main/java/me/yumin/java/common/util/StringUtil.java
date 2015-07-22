@@ -72,11 +72,29 @@ public class StringUtil {
      * @param json
      * @return
      */
-    public static boolean isJSON(String json) {
+    public static boolean isJSONArray(String json) {
+        return isJSON(json, "[", "]");
+    }
+
+    /**
+     * @param json
+     * @return
+     */
+    public static boolean isJSONObject(String json) {
+        return isJSON(json, "{", "}");
+    }
+
+    /**
+     * @param json
+     * @param startsWith
+     * @param endsWith
+     * @return
+     */
+    private static boolean isJSON(String json, String startsWith, String endsWith) {
         boolean result = false;
 
         if (isNotEmpty(json)) {
-            if (json.startsWith("{") && json.endsWith("}")) {
+            if (json.startsWith(startsWith) && json.endsWith(endsWith)) {
                 result = true;
             }
         }
