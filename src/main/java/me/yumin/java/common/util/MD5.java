@@ -20,9 +20,9 @@ public class MD5 {
 
         if (StringUtil.isNotEmpty(data, charset)) {
             try {
-                MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-                if (null != messageDigest) {
-                    result = byte2hex(messageDigest.digest(data.getBytes(charset)));
+                MessageDigest md5 = MessageDigest.getInstance("MD5");
+                if (null != md5) {
+                    result = byte2hex(md5.digest(data.getBytes(charset)));
                 }
             } catch (Exception e) {
                 Log.error(e);
