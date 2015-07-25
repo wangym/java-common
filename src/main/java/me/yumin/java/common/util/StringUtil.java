@@ -21,27 +21,11 @@ public class StringUtil {
     public static final String NULL = null;
 
     /**
-     * @param string
-     * @return
-     */
-    public static boolean isEmpty(String string) {
-        return (!isNotEmpty(string));
-    }
-
-    /**
      * @param args
      * @return
      */
     public static boolean isEmpty(String... args) {
         return (!isNotEmpty(args));
-    }
-
-    /**
-     * @param string
-     * @return
-     */
-    public static boolean isNotEmpty(String string) {
-        return (null != string && 0 < string.length());
     }
 
     /**
@@ -52,15 +36,15 @@ public class StringUtil {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
-            int i = 0;
+            int counter = 0;
             for (String string : args) {
-                if (isEmpty(string)) {
-                    break;
+                if (null != string && 0 < string.length()) {
+                    counter++;
                 } else {
-                    i++;
+                    break;
                 }
             }
-            if (i == args.length) {
+            if (counter == args.length) {
                 result = true;
             }
         }
