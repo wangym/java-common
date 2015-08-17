@@ -25,7 +25,7 @@ public class MD5 {
                     result = byte2hex(md5.digest(data.getBytes(charset)));
                 }
             } catch (Exception e) {
-                Log.error(e);
+                LogUtil.error(e);
             }
         }
 
@@ -40,15 +40,15 @@ public class MD5 {
         String result = null;
 
         if (null != bytes && 0 < bytes.length) {
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuffer stringBuffer = new StringBuffer();
             for (int i = 0; i < bytes.length; i++) {
                 String hex = Integer.toHexString(bytes[i] & 0xFF);
                 if (null != hex && 1 == hex.length()) {
-                    stringBuilder.append("0");
+                    stringBuffer.append("0");
                 }
-                stringBuilder.append(hex.toUpperCase());
+                stringBuffer.append(hex.toUpperCase());
             }
-            result = stringBuilder.toString();
+            result = stringBuffer.toString();
         }
 
         return result;

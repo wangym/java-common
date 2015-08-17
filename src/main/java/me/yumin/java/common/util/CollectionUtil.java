@@ -16,7 +16,23 @@ public class CollectionUtil {
      * @return
      */
     public static boolean isEmpty(Collection... args) {
-        return (!isNotEmpty(args));
+        boolean result = false;
+
+        if (null != args && 0 < args.length) {
+            int counter = 0;
+            for (Collection collection : args) {
+                if (null == collection || 0 == collection.size()) {
+                    counter++;
+                } else {
+                    break;
+                }
+            }
+            if (counter == args.length) {
+                result = true;
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -48,7 +64,23 @@ public class CollectionUtil {
      * @return
      */
     public static boolean isEmpty(Map... args) {
-        return (!isNotEmpty(args));
+        boolean result = false;
+
+        if (null != args && 0 < args.length) {
+            int counter = 0;
+            for (Map map : args) {
+                if (null == map || 0 == map.size()) {
+                    counter++;
+                } else {
+                    break;
+                }
+            }
+            if (counter == args.length) {
+                result = true;
+            }
+        }
+
+        return result;
     }
 
     /**

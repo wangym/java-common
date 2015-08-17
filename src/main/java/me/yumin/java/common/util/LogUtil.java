@@ -9,11 +9,11 @@ import org.apache.commons.logging.LogFactory;
  * @author chinawym@gmail.com
  * @since 2014-05-05
  */
-public class Log {
+public class LogUtil {
     // log for class
-    private static final org.apache.commons.logging.Log LOG = LogFactory.getLog(Log.class);
+    private static final org.apache.commons.logging.Log LOG = LogFactory.getLog(LogUtil.class);
 
-    private Log() {
+    private LogUtil() {
     }
 
     /**

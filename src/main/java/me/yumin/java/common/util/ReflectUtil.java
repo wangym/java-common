@@ -26,9 +26,9 @@ public class ReflectUtil {
             Field field = getDeclaredField(object, fieldName);
             fieldValue = field.get(object);
         } catch (NoSuchFieldException e) {
-            Log.error(e);
+            LogUtil.error(e);
         } catch (IllegalAccessException e) {
-            Log.error(e);
+            LogUtil.error(e);
         }
 
         return fieldValue;
@@ -50,9 +50,9 @@ public class ReflectUtil {
             field.set(object, fieldValue);
             result = true;
         } catch (NoSuchFieldException e) {
-            Log.error(e);
+            LogUtil.error(e);
         } catch (IllegalAccessException e) {
-            Log.error(e);
+            LogUtil.error(e);
         }
 
         return result;
@@ -74,11 +74,11 @@ public class ReflectUtil {
             Method method = getDeclaredMethod(object, methodName, parameterTypes);
             result = method.invoke(object, args);
         } catch (NoSuchMethodException e) {
-            Log.error(e);
+            LogUtil.error(e);
         } catch (IllegalAccessException e) {
-            Log.error(e);
+            LogUtil.error(e);
         } catch (InvocationTargetException e) {
-            Log.error(e);
+            LogUtil.error(e);
         }
 
         return result;
@@ -109,7 +109,7 @@ public class ReflectUtil {
                         try {
                             types[i] = (Class) field.get(null);
                         } catch (IllegalAccessException e) {
-                            Log.error(e);
+                            LogUtil.error(e);
                         }
                     }
                 }
