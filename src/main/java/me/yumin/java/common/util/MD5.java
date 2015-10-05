@@ -1,5 +1,6 @@
 package me.yumin.java.common.util;
 
+import me.yumin.java.common.constant.R;
 import java.security.MessageDigest;
 
 /**
@@ -25,7 +26,7 @@ public class MD5 {
                     result = byte2hex(md5.digest(data.getBytes(charset)));
                 }
             } catch (Exception e) {
-                LogUtil.error(e);
+                R.LOG.error(e);
             }
         }
 

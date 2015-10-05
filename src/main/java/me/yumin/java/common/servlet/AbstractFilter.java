@@ -10,9 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import me.yumin.java.common.constant.R;
 import me.yumin.java.common.util.StringUtil;
 
 /**
@@ -22,7 +20,6 @@ import me.yumin.java.common.util.StringUtil;
  * @version $Id: AbstractFilter.java 1038 2004-06-04 07:02:54Z baobao $
  */
 public abstract class AbstractFilter implements Filter {
-    protected final Log log = LogFactory.getLog(getClass());
     private FilterConfig filterConfig;
     private boolean eatException;
 
@@ -38,7 +35,7 @@ public abstract class AbstractFilter implements Filter {
         this.eatException = Boolean.valueOf(findInitParameter("eatException", "true")).booleanValue();
 
         if (eatException) {
-            log.info("Set eating ServletException to " + eatException);
+            R.LOG.info("Set eating ServletException to " + eatException);
         }
 
         init();
@@ -145,7 +142,7 @@ public abstract class AbstractFilter implements Filter {
             doFilter(req, res, chain);
         } catch (ServletException e) {
             if (eatException) {
-                log.error("Failed to execute the filter chain", e);
+                R.LOG.error("Failed to execute the filter chain", e);
             } else {
                 throw e;
             }

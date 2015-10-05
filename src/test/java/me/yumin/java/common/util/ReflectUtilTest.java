@@ -90,7 +90,7 @@ public class ReflectUtilTest {
 
     @Test
     public void testInvokeMethodPlusForString() throws Exception {
-        String name = "xuanyin";
+        String name = "yumin";
         Person person = new Person();
 
         ReflectUtil.invokeMethodPlus(person, "setName", name);

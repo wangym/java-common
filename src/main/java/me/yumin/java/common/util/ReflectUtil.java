@@ -1,5 +1,6 @@
 package me.yumin.java.common.util;
 
+import me.yumin.java.common.constant.R;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,9 +27,9 @@ public class ReflectUtil {
             Field field = getDeclaredField(object, fieldName);
             fieldValue = field.get(object);
         } catch (NoSuchFieldException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         } catch (IllegalAccessException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         }
 
         return fieldValue;
@@ -50,9 +51,9 @@ public class ReflectUtil {
             field.set(object, fieldValue);
             result = true;
         } catch (NoSuchFieldException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         } catch (IllegalAccessException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         }
 
         return result;
@@ -74,11 +75,11 @@ public class ReflectUtil {
             Method method = getDeclaredMethod(object, methodName, parameterTypes);
             result = method.invoke(object, args);
         } catch (NoSuchMethodException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         } catch (IllegalAccessException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         } catch (InvocationTargetException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         }
 
         return result;
@@ -109,7 +110,7 @@ public class ReflectUtil {
                         try {
                             types[i] = (Class) field.get(null);
                         } catch (IllegalAccessException e) {
-                            LogUtil.error(e);
+                            R.LOG.error(e);
                         }
                     }
                 }

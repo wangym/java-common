@@ -9,24 +9,9 @@ import me.yumin.java.common.util.algorithm.IStack;
  * @since 2015-02-28 15:55
  */
 public class DefaultStack<T> implements IStack<T> {
-    /**
-     *
-     */
     private Object[] elements;
-
-    /**
-     *
-     */
     private final static int DEFAULT_CAPACITY = 16;
-
-    /**
-     *
-     */
     private int capacity;
-
-    /**
-     *
-     */
     private int top = -1;
 
     /**
@@ -68,7 +53,7 @@ public class DefaultStack<T> implements IStack<T> {
         if (-1 == top) {
             throw new StackEmptyException();
         }
-        
+
         return (T) elements[top];
     }
 

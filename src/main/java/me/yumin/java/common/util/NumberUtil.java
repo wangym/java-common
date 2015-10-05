@@ -1,5 +1,7 @@
 package me.yumin.java.common.util;
 
+import me.yumin.java.common.constant.R;
+
 /**
  * @author chinawym@gmail.com
  * @since 2015-07-26
@@ -95,7 +97,7 @@ public class NumberUtil {
                 result = Double.parseDouble(string);
             }
         } catch (NumberFormatException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         }
 
         return result;
@@ -115,7 +117,7 @@ public class NumberUtil {
                 result = Long.parseLong(string);
             }
         } catch (NumberFormatException e) {
-            LogUtil.error(e);
+            R.LOG.error(e);
         }
 
         return result;
