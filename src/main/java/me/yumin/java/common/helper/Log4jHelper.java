@@ -62,7 +62,7 @@ public class Log4jHelper {
     }
 
     /**
-     * @param message
+     * @param message the message object to log.
      */
     public void info(String message) {
         info(message, null);

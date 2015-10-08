@@ -6,22 +6,22 @@ package me.yumin.java.common.constant.enumtype;
  */
 public interface IResultEnum {
     /**
-     * @return
+     * @return 是否成功
      */
     boolean isSuccess();
 
     /**
-     * @return
+     * @return 需要重试
      */
     boolean isRetry();
 
     /**
-     * @return
+     * @return 返回代码
      */
     int getCode();
 
     /**
-     * @return
+     * @return 返回提示
      */
     String getMsg();
 }

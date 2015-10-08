@@ -25,9 +25,9 @@ public class Result<T> implements Serializable {
     protected T data = null;
 
     /**
-     * @param resultEnum 结果枚举
+     * @param resultEnum 枚举结果
      */
-    public  <R extends IResultEnum> void setResult(R resultEnum) {
+    public <R extends IResultEnum> void setResult(R resultEnum) {
         if (null != resultEnum) {
             this.success = resultEnum.isSuccess();
             this.retry = resultEnum.isRetry();
