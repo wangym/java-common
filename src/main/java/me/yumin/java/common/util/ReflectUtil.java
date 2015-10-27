@@ -20,6 +20,7 @@ public class ReflectUtil {
      * @param fieldName 类私有属性名
      * @return 属性值
      */
+    @Deprecated
     public static Object getFieldValue(Object object, String fieldName) {
         Object fieldValue = null;
 
