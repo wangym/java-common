@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.yumin.java</groupId>
     <artifactId>java-common</artifactId>
-    <description>Java common utilities and frameworks</description>
+    <description>Java common utilities and helpers</description>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
