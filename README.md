@@ -1,4 +1,4 @@
 java-common
 ===========
 
-Java common utilities and frameworks
+Java common utilities and helpers
