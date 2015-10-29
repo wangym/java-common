@@ -6,7 +6,7 @@ import me.yumin.java.common.constant.R;
  * @author chinawym@gmail.com
  * @since 2015-07-26
  */
-public class NumberUtil {
+public final class NumberUtil {
     private NumberUtil() {
     }
 

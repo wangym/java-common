@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * @author chinawym@gmail.com
  * @since 2015-03-02
  */
-public class ReflectUtil {
+public final class ReflectUtil {
     private ReflectUtil() {
     }
 

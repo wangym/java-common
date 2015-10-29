@@ -7,7 +7,7 @@ import java.util.Map;
  * @author chinawym@gmail.com
  * @since 2015-07-25
  */
-public class CollectionUtil {
+public final class CollectionUtil {
     private CollectionUtil() {
     }
 

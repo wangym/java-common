@@ -7,7 +7,7 @@ import java.security.MessageDigest;
  * @author chinawym@gmail.com
  * @since 2015-07-09
  */
-public class MD5 {
+public final class MD5 {
     private MD5() {
     }
 

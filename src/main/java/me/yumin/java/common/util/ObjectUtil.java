@@ -10,7 +10,7 @@ package me.yumin.java.common.util;
  * @author Michael Zhou, #redactor chinawym@gmail.com
  * @version $Id: ObjectUtil.java 509 2004-02-16 05:42:07Z baobao $
  */
-public class ObjectUtil {
+public final class ObjectUtil {
     private ObjectUtil() {
     }
 

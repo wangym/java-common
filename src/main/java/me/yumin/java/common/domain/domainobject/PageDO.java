@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author chinawym@gmail.com
  * @since 2015-07-09
  */
-public class PageDO implements Serializable {
+public final class PageDO implements Serializable {
     private static final long serialVersionUID = 2710973307675225562L;
 
     @Getter

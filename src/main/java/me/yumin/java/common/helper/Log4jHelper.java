@@ -1,13 +1,13 @@
 package me.yumin.java.common.helper;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author chinawym@gmail.com
  * @since 2015-10-04
  */
-public class Log4jHelper {
+public final class Log4jHelper {
     private final Logger LOG;
 
     /**

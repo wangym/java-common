@@ -4,7 +4,7 @@ package me.yumin.java.common.util;
  * @author chinawym@gmail.com
  * @since 2015-06-16
  */
-public class Assert {
+public final class Assert {
     private Assert() {
     }
 

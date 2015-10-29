@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSONObject;
  * @author chinawym@gmail.com
  * @since 2015-10-11
  */
-public class JsonUtil {
+public final class JsonUtil {
     /**
      * 判断能否互转
      *

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author chinawym@gmail.com
  * @since 2015-10-05
  */
-public class Result<T> implements Serializable {
+public final class Result<T> implements Serializable {
     private static final long serialVersionUID = 4484904915776383226L;
 
     @Getter

@@ -8,7 +8,7 @@ import me.yumin.java.common.util.algorithm.IStack;
  * @author java-fries.com, #redactor chinawym@gmail.com
  * @since 2015-02-28 15:55
  */
-public class DefaultStack<T> implements IStack<T> {
+public final class DefaultStack<T> implements IStack<T> {
     private Object[] elements;
     private final static int DEFAULT_CAPACITY = 16;
     private int capacity;

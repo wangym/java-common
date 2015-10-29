@@ -11,7 +11,7 @@ import java.util.List;
  * @author Michael Zhou
  * @version $Id: Profiler.java 1291 2005-03-04 03:23:30Z baobao $
  */
-public class Profiler {
+public final class Profiler {
     private static final ThreadLocal entryStack = new ThreadLocal();
 
     /**
