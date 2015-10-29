@@ -14,11 +14,11 @@ public final class GeoUtil {
     private static final double PI = 3.14159265358979324 * 3000.0 / 180.0;
 
     /**
-     * BD09×ªGCJ02(°Ù¶È×ø±ê×ª¸ßµÂ×ø±ê)
+     * BD09è½¬GCJ02(ç™¾åº¦åæ ‡è½¬é«˜å¾·åæ ‡)
      *
-     * @param baiduLat °Ù¶È×ø±êÎ³¶È
-     * @param baiduLog °Ù¶È×ø±ê¾­¶È
-     * @return
+     * @param baiduLat ç™¾åº¦åæ ‡çº¬åº¦
+     * @param baiduLog ç™¾åº¦åæ ‡ç»åº¦
+     * @return é«˜å¾·åæ ‡
      */
     public static double[] convertBD09ToGCJ02(double baiduLat, double baiduLog) throws Exception {
         double[] result = {};
@@ -42,7 +42,7 @@ public final class GeoUtil {
     }
 
     /**
-     * ÊĞÒ»¼¶Ä£ºı
+     * å¸‚ä¸€çº§æ¨¡ç³Š
      * example: 330100 -> 3301*
      *
      * @param cityCode
@@ -53,11 +53,11 @@ public final class GeoUtil {
     }
 
     /**
-     * È¡Á½µã¾àÀë(·µ»Ø¹«Àï)
-     * »ùÓÚGoogle Android SDKÄÚÔ­ÉúËã·¨·â×°
+     * å–ä¸¤ç‚¹è·ç¦»(è¿”å›å…¬é‡Œ)
+     * åŸºäºGoogle Android SDKå†…åŸç”Ÿç®—æ³•å°è£…
      *
-     * @param startLatLog ÆğµãÎ³¾­¶È(Î³Ç°¾­ºó¶ººÅ¼ä¸ô)
-     * @param endLatLog   ÖÕ¶ÈÎ³¾­¶È(Î³Ç°¾­ºó¶ººÅ¼ä¸ô)
+     * @param startLatLog èµ·ç‚¹çº¬ç»åº¦(çº¬å‰ç»åé€—å·é—´éš”)
+     * @param endLatLog   ç»ˆåº¦çº¬ç»åº¦(çº¬å‰ç»åé€—å·é—´éš”)
      * @return
      */
     public static float getDistanceBetween(String startLatLog, String endLatLog) throws Exception {
@@ -77,8 +77,8 @@ public final class GeoUtil {
                             (0 != startLatitude && 0 != startLongitude && 0 != endLatitude && 0 != endLongitude)) {
                         float[] results = new float[1];
                         distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results);
-                        if (null != results && 0 < results.length) {
-                            // ´ÓÃ××ªÎª¹«ÀïÇÒÓÃÒøĞĞ¼ÒÄ£Ê½ÉáÎ»
+                        if (0 < results.length) {
+                            // ä»ç±³è½¬ä¸ºå…¬é‡Œä¸”ç”¨é“¶è¡Œå®¶æ¨¡å¼èˆä½
                             result = new BigDecimal(results[0] * 0.001).setScale(2, RoundingMode.HALF_EVEN).floatValue();
                         }
                     }
