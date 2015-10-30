@@ -3,25 +3,43 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.yumin</groupId>
     <artifactId>java-common</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
     <name>java-common</name>
     <description>Java common utilities and helpers</description>
     <url>https://github.com/wangym/java-common</url>
-    <inceptionYear>2014</inceptionYear>
-    <version>1.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <developers>
         <developer>
-            <id>yumin</id>
             <name>yumin</name>
             <email>chinawym@gmail.com</email>
+            <organization>yumin</organization>
+            <organizationUrl>http://yumin.me</organizationUrl>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:wangym/java-common.git</connection>
+        <developerConnection>scm:git:git@github.com:wangym/java-common.git</developerConnection>
+        <url>git@github.com:wangym/java-common.git</url>
+    </scm>
+
     <properties>
         <compiler.plugin.version>3.3</compiler.plugin.version>
         <resources.plugin.version>2.7</resources.plugin.version>
         <java.version>1.6</java.version>
         <project.encoding>UTF-8</project.encoding>
     </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -44,6 +62,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <!-- ##### third-party ##### -->
         <dependency>
