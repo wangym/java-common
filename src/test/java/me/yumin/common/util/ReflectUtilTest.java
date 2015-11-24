@@ -1,6 +1,5 @@
-package me.yumin.java.common.util;
+package me.yumin.common.util;
 
-import me.yumin.common.util.ReflectUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import pojo.Person;

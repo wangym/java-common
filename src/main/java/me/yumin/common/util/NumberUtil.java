@@ -1,6 +1,6 @@
 package me.yumin.common.util;
 
-import me.yumin.java.common.constant.R;
+import me.yumin.common.constant.R;
 
 /**
  * @author chinawym@gmail.com

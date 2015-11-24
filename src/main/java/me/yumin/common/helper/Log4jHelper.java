@@ -1,6 +1,5 @@
 package me.yumin.common.helper;
 
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
