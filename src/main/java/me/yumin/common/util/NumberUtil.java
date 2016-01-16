@@ -63,7 +63,7 @@ public final class NumberUtil {
      * @param args
      * @return
      */
-    public static boolean isGreaterEqual(final int value, final Number... args) {
+    public static boolean isGreaterEqual(final long value, final Number... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
