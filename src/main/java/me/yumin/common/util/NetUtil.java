@@ -1,6 +1,6 @@
 package me.yumin.common.util;
 
-import me.yumin.common.constant.R;
+import me.yumin.common.R;
 import java.net.InetAddress;
 
 /**

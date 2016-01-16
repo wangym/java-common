@@ -20,7 +20,7 @@ public final class GeoUtil {
      * @param baiduLog 百度坐标经度
      * @return 高德坐标
      */
-    public static double[] convertBD09ToGCJ02(double baiduLat, double baiduLog) throws Exception {
+    public static double[] convertBD09ToGCJ02(final double baiduLat, final double baiduLog) throws Exception {
         double[] result = {};
 
         if (0 != baiduLat && 0 != baiduLog) {
@@ -48,7 +48,7 @@ public final class GeoUtil {
      * @param cityCode
      * @return
      */
-    public static String getFuzzyCityCode(String cityCode) {
+    public static String getFuzzyCityCode(final String cityCode) {
         return appendCityCodeTail(cityCode, 0, 4, "*");
     }
 
@@ -60,7 +60,7 @@ public final class GeoUtil {
      * @param endLatLog   终度纬经度(纬前经后逗号间隔)
      * @return
      */
-    public static float getDistanceBetween(String startLatLog, String endLatLog) throws Exception {
+    public static float getDistanceBetween(final String startLatLog, final String endLatLog) throws Exception {
         float result = -1;
 
         if (StringUtil.isNotEmpty(startLatLog, endLatLog)) {
@@ -97,7 +97,7 @@ public final class GeoUtil {
      * @param results
      */
     public static void computeDistanceAndBearing(double lat1, double lon1,
-                                                 double lat2, double lon2, float[] results) {
+                                                 double lat2, double lon2, final float[] results) {
         // Based on http://www.ngs.noaa.gov/PUBS_LIB/inverse.pdf
         // using the "Inverse Formula" (section 4)
 
@@ -205,7 +205,7 @@ public final class GeoUtil {
      * @return
      * http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201504/t20150415_712722.html
      */
-    private static String appendCityCodeTail(String cityCode, int beginIndex, int endIndex, String tail) {
+    private static String appendCityCodeTail(final String cityCode, final int beginIndex, final int endIndex, final String tail) {
         String result = cityCode;
 
         if (StringUtil.isNotEmpty(cityCode) && 6 == cityCode.length()) {
@@ -232,8 +232,8 @@ public final class GeoUtil {
      * @param results        an array of floats to hold the results
      * @throws IllegalArgumentException if results is null or has length < 1
      */
-    private static void distanceBetween(double startLatitude, double startLongitude,
-                                        double endLatitude, double endLongitude, float[] results) {
+    private static void distanceBetween(final double startLatitude, final double startLongitude,
+                                        final double endLatitude, final double endLongitude, final float[] results) {
         if (results == null || results.length < 1) {
             throw new IllegalArgumentException("results is null or has length < 1");
         }

@@ -17,7 +17,7 @@ public final class DefaultStack<T> implements IStack<T> {
     /**
      * @param capacity Stack capacity
      */
-    public DefaultStack(int capacity) {
+    public DefaultStack(final int capacity) {
         this.capacity = capacity;
         elements = new Object[capacity];
     }
@@ -30,7 +30,7 @@ public final class DefaultStack<T> implements IStack<T> {
     }
 
     @Override
-    public void push(T item) {
+    public void push(final T item) {
         if (capacity == size()) {
             throw new StackFullException();
         }

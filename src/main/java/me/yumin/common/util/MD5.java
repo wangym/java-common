@@ -1,6 +1,6 @@
 package me.yumin.common.util;
 
-import me.yumin.common.constant.R;
+import me.yumin.common.R;
 import java.security.MessageDigest;
 
 /**
@@ -16,7 +16,7 @@ public final class MD5 {
      * @param charset
      * @return
      */
-    public static String encode(String data, String charset) {
+    public static String encode(final String data, final String charset) {
         String result = null;
 
         if (StringUtil.isNotEmpty(data, charset)) {
@@ -37,7 +37,7 @@ public final class MD5 {
      * @param bytes
      * @return
      */
-    private static String byte2hex(byte[] bytes) {
+    private static String byte2hex(final byte[] bytes) {
         String result = null;
 
         if (null != bytes && 0 < bytes.length) {

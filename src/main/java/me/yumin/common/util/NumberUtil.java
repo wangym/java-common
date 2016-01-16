@@ -1,6 +1,6 @@
 package me.yumin.common.util;
 
-import me.yumin.common.constant.R;
+import me.yumin.common.R;
 
 /**
  * @author chinawym@gmail.com
@@ -14,7 +14,7 @@ public final class NumberUtil {
      * @param args
      * @return
      */
-    public static boolean isEmpty(Number... args) {
+    public static boolean isEmpty(final Number... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -38,7 +38,7 @@ public final class NumberUtil {
      * @param args
      * @return
      */
-    public static boolean isNotEmpty(Number... args) {
+    public static boolean isNotEmpty(final Number... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -63,7 +63,7 @@ public final class NumberUtil {
      * @param args
      * @return
      */
-    public static boolean isGreaterEqual(int value, Number... args) {
+    public static boolean isGreaterEqual(final int value, final Number... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -89,7 +89,7 @@ public final class NumberUtil {
      * @param string 字符串型数值
      * @return Double
      */
-    public static Double parseDouble(String string) {
+    public static Double parseDouble(final String string) {
         Double result = null;
 
         try {
@@ -109,7 +109,7 @@ public final class NumberUtil {
      * @param string 字符串型数值
      * @return Long
      */
-    public static Long parseLong(String string) {
+    public static Long parseLong(final String string) {
         Long result = null;
 
         try {
@@ -130,7 +130,7 @@ public final class NumberUtil {
      * @param scale
      * @return
      */
-    public static String scale(Number number, int scale) {
+    public static String scale(final Number number, final int scale) {
         String result = null;
 
         if (null != number && 0 < scale) {

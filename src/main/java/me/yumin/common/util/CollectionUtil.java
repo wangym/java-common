@@ -15,7 +15,7 @@ public final class CollectionUtil {
      * @param args
      * @return
      */
-    public static boolean isEmpty(Collection... args) {
+    public static boolean isEmpty(final Collection... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -39,7 +39,7 @@ public final class CollectionUtil {
      * @param args
      * @return
      */
-    public static boolean isNotEmpty(Collection... args) {
+    public static boolean isNotEmpty(final Collection... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -63,7 +63,7 @@ public final class CollectionUtil {
      * @param args
      * @return
      */
-    public static boolean isEmpty(Map... args) {
+    public static boolean isEmpty(final Map... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -87,7 +87,7 @@ public final class CollectionUtil {
      * @param args
      * @return
      */
-    public static boolean isNotEmpty(Map... args) {
+    public static boolean isNotEmpty(final Map... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {

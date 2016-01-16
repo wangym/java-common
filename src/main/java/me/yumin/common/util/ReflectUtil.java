@@ -1,6 +1,6 @@
 package me.yumin.common.util;
 
-import me.yumin.common.constant.R;
+import me.yumin.common.R;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -21,7 +21,7 @@ public final class ReflectUtil {
      * @return 属性值
      */
     @Deprecated
-    public static Object getFieldValue(Object object, String fieldName) {
+    public static Object getFieldValue(final Object object, final String fieldName) {
         Object fieldValue = null;
 
         try {
@@ -44,7 +44,7 @@ public final class ReflectUtil {
      * @param fieldValue 属性值
      * @return true|false
      */
-    public static boolean setFieldValue(Object object, String fieldName, Object fieldValue) {
+    public static boolean setFieldValue(final Object object, final String fieldName, final Object fieldValue) {
         boolean result = false;
 
         try {
@@ -69,7 +69,7 @@ public final class ReflectUtil {
      * @param args           入参对象
      * @return 执行结果对象
      */
-    public static Object invokeMethod(Object object, String methodName, Class[] parameterTypes, Object[] args) {
+    public static Object invokeMethod(final Object object, final String methodName, final Class[] parameterTypes, final Object[] args) {
         Object result = null;
 
         try {
@@ -94,7 +94,7 @@ public final class ReflectUtil {
      * @param args       入参对象
      * @return 执行结果对象
      */
-    public static Object invokeMethodPlus(Object object, String methodName, Object... args) {
+    public static Object invokeMethodPlus(final Object object, final String methodName, final Object... args) {
         Object result = null;
 
         if (null != args) {
@@ -131,7 +131,7 @@ public final class ReflectUtil {
      * @return Field object
      * @throws NoSuchFieldException
      */
-    private static Field getDeclaredField(Object object, String fieldName) throws NoSuchFieldException {
+    private static Field getDeclaredField(final Object object, final String fieldName) throws NoSuchFieldException {
         Field field = null;
 
         if (null != object && (null != fieldName && 0 < fieldName.length())) {
@@ -151,7 +151,7 @@ public final class ReflectUtil {
      * @return Method object
      * @throws NoSuchMethodException
      */
-    private static Method getDeclaredMethod(Object object, String methodName, Class[] parameterTypes) throws NoSuchMethodException {
+    private static Method getDeclaredMethod(final Object object, final String methodName, final Class[] parameterTypes) throws NoSuchMethodException {
         Method method = null;
 
         if (null != object && (null != methodName && 0 < methodName.length())) {

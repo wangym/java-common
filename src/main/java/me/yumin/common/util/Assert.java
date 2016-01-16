@@ -11,7 +11,7 @@ public final class Assert {
     /**
      * @param objects
      */
-    public static void notNull(Object... objects) {
+    public static void notNull(final Object... objects) {
         for (Object object : objects) {
             notNull(object, null);
         }
@@ -21,14 +21,14 @@ public final class Assert {
      * @param object
      * @param message
      */
-    public static void notNull(Object object, String message) {
+    public static void notNull(final Object object, final String message) {
         assertTrue(null != object, message);
     }
 
     /**
      * @param condition
      */
-    public static void assertTrue(boolean condition) {
+    public static void assertTrue(final boolean condition) {
         assertTrue(condition, null);
     }
 
@@ -36,7 +36,7 @@ public final class Assert {
      * @param condition
      * @param message
      */
-    public static void assertTrue(boolean condition, String message) {
+    public static void assertTrue(final boolean condition, final String message) {
         if (!condition) {
             exception(message);
         }
@@ -45,7 +45,7 @@ public final class Assert {
     /**
      * @param message
      */
-    private static void exception(String message) {
+    private static void exception(final String message) {
         throw new IllegalArgumentException(message);
     }
 }

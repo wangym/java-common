@@ -28,7 +28,7 @@ public final class ObjectUtil {
      * @param defaultValue 默认值
      * @return 对象本身或默认对象
      */
-    public static Object defaultIfNull(Object object, Object defaultValue) {
+    public static Object defaultIfNull(final Object object, final Object defaultValue) {
         return (object != null) ? object : defaultValue;
     }
 }

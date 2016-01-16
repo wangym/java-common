@@ -30,7 +30,7 @@ public final class StringUtil {
      * @param defaultStr 默认字符串
      * @return 字符串本身或指定的默认字符串
      */
-    public static String defaultIfEmpty(String str, String defaultStr) {
+    public static String defaultIfEmpty(final String str, final String defaultStr) {
         return ((null == str) || (0 == str.length())) ? defaultStr : str;
     }
 
@@ -38,7 +38,7 @@ public final class StringUtil {
      * @param args
      * @return
      */
-    public static boolean isEmpty(String... args) {
+    public static boolean isEmpty(final String... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -62,7 +62,7 @@ public final class StringUtil {
      * @param args
      * @return
      */
-    public static boolean isNotEmpty(String... args) {
+    public static boolean isNotEmpty(final String... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
@@ -86,7 +86,7 @@ public final class StringUtil {
      * @param json
      * @return
      */
-    public static boolean isJSONArray(String json) {
+    public static boolean isJSONArray(final String json) {
         return isJSON(json, "[", "]");
     }
 
@@ -94,7 +94,7 @@ public final class StringUtil {
      * @param json
      * @return
      */
-    public static boolean isJSONObject(String json) {
+    public static boolean isJSONObject(final String json) {
         return isJSON(json, "{", "}");
     }
     
@@ -114,7 +114,7 @@ public final class StringUtil {
      * @param stripChars 要除去的字符，如果为<code>null</code>表示除去空白字符
      * @return 除去指定字符后的的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
      */
-    public static String trim(String str, String stripChars) {
+    public static String trim(final String str, final String stripChars) {
         return trim(str, stripChars, 0);
     }
 
@@ -136,7 +136,7 @@ public final class StringUtil {
      * @param str 要处理的字符串
      * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回<code>null</code>
      */
-    public static String trimToNull(String str) {
+    public static String trimToNull(final String str) {
         return trimToNull(str, null);
     }
 
@@ -161,7 +161,7 @@ public final class StringUtil {
      * @param stripChars 要除去的字符，如果为<code>null</code>表示除去空白字符
      * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回<code>null</code>
      */
-    public static String trimToNull(String str, String stripChars) {
+    public static String trimToNull(final String str, final String stripChars) {
         String result = trim(str, stripChars);
 
         if ((result == null) || (result.length() == 0)) {
@@ -177,7 +177,7 @@ public final class StringUtil {
      * @param endsWith
      * @return
      */
-    private static boolean isJSON(String json, String startsWith, String endsWith) {
+    private static boolean isJSON(final String json, final String startsWith, final String endsWith) {
         boolean result = false;
 
         if (isNotEmpty(json)) {
@@ -206,7 +206,7 @@ public final class StringUtil {
      * @param mode       <code>-1</code>表示trimStart，<code>0</code>表示trim全部，<code>1</code>表示trimEnd
      * @return 除去指定字符后的的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
      */
-    private static String trim(String str, String stripChars, int mode) {
+    private static String trim(final String str, final String stripChars, final int mode) {
         if (str == null) {
             return null;
         }

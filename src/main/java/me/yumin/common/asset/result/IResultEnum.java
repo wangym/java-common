@@ -1,4 +1,4 @@
-package me.yumin.common.constant.enumtype;
+package me.yumin.common.asset.result;
 
 /**
  * @author chinawym@gmail.com

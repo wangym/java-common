@@ -2,8 +2,8 @@ package me.yumin.common.util;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pojo.Person;
-import pojo.SexEnum;
+import type.Person;
+import type.SexEnum;
 
 /**
  * @author chinawym@gmail.com

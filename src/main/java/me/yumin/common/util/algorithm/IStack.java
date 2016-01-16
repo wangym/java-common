@@ -10,7 +10,7 @@ public interface IStack<T> {
     /**
      * @param item Push item
      */
-    void push(T item);
+    void push(final T item);
 
     /**
      * @return T

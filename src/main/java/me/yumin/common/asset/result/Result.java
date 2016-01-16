@@ -1,8 +1,7 @@
-package me.yumin.common.domain;
+package me.yumin.common.asset.result;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.yumin.common.constant.enumtype.IResultEnum;
 import java.io.Serializable;
 
 /**
@@ -25,14 +24,18 @@ public final class Result<T> implements Serializable {
     protected T data = null;
 
     /**
-     * @param resultEnum 枚举结果
+     * @param resultEnum
+     * @param <R>
+     * @return
      */
-    public <R extends IResultEnum> void setResult(R resultEnum) {
+    public <R extends IResultEnum> Result setResult(final R resultEnum) {
         if (null != resultEnum) {
             this.success = resultEnum.isSuccess();
             this.retry = resultEnum.isRetry();
             this.code = resultEnum.getCode();
             this.msg = resultEnum.getMsg();
         }
+
+        return this;
     }
 }

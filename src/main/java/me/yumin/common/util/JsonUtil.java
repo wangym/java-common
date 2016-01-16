@@ -15,7 +15,7 @@ public final class JsonUtil {
      * @param clazz
      * @return
      */
-    public static boolean isMutualConversion(Object object, Class clazz) {
+    public static boolean isMutualConversion(final Object object, final Class clazz) {
         boolean result = false;
 
         if (null != object && null != clazz) {
@@ -34,7 +34,7 @@ public final class JsonUtil {
      * @param json
      * @return
      */
-    public static final JSONObject parseObject(String json) {
+    public static final JSONObject parseObject(final String json) {
         return JSON.parseObject(json);
     }
 
@@ -44,7 +44,7 @@ public final class JsonUtil {
      * @param <T>
      * @return
      */
-    public static final <T> T parseObject(String json, Class<T> clazz) {
+    public static final <T> T parseObject(final String json, final Class<T> clazz) {
         return JSON.parseObject(json, clazz);
     }
 
@@ -52,7 +52,7 @@ public final class JsonUtil {
      * @param object
      * @return
      */
-    public static final String toJSONString(Object object) {
+    public static final String toJSONString(final Object object) {
         return JSON.toJSONString(object);
     }
 }

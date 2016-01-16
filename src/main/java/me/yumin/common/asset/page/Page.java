@@ -1,4 +1,4 @@
-package me.yumin.common.domain.domainobject;
+package me.yumin.common.asset.page;
 
 import lombok.Getter;
 import java.io.Serializable;
@@ -7,32 +7,32 @@ import java.io.Serializable;
  * @author chinawym@gmail.com
  * @since 2015-07-09
  */
-public final class PageDO implements Serializable {
+public final class Page implements Serializable {
     private static final long serialVersionUID = 2710973307675225562L;
 
     @Getter
-    private long totalRows; // 总的行数
+    private long totalRows; // 总行数
     @Getter
-    private int pageRows; // 每页行数
+    private int pageRows; // 每页数
     @Getter
-    private int pageNum; // 每页行数
+    private int pageNum; // 当前页
     @Getter
-    private long totalPage = 0L; // 总的页数
+    private long totalPage; // 总页数
     @Getter
-    private boolean hasNext = true; // 有无下页
+    private boolean hasNext = true; // 下页否
 
     /**
      *
      */
-    private PageDO() {
+    private Page() {
     }
 
     /**
-     * @param totalRows
-     * @param pageRows
-     * @param pageNum
+     * @param totalRows 总行数
+     * @param pageRows  每页数
+     * @param pageNum   当前页
      */
-    public PageDO(long totalRows, int pageRows, int pageNum) {
+    public Page(final long totalRows, final int pageRows, final int pageNum) {
         this.totalRows = totalRows;
         this.pageRows = pageRows;
         this.pageNum = pageNum;
@@ -43,9 +43,7 @@ public final class PageDO implements Serializable {
     }
 
     /**
-     * 总的页数
      *
-     * @return
      */
     private void setTotalPage() {
         if (0 < totalRows && 0 < pageRows) {
@@ -54,9 +52,7 @@ public final class PageDO implements Serializable {
     }
 
     /**
-     * 有无下页
      *
-     * @return
      */
     private void setHasNext() {
         if (pageNum >= totalPage) {

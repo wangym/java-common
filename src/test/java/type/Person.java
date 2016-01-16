@@ -1,4 +1,4 @@
-package pojo;
+package type;
 
 /**
  * @author chinawym@gmail.com

@@ -15,7 +15,7 @@ public final class StackEmptyException extends RuntimeException {
     /**
      * @param message Exception message
      */
-    public StackEmptyException(String message) {
+    public StackEmptyException(final String message) {
         super(message);
     }
 }

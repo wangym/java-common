@@ -12,7 +12,7 @@ import java.util.List;
  * @version $Id: Profiler.java 1291 2005-03-04 03:23:30Z baobao $
  */
 public final class Profiler {
-    private static final ThreadLocal entryStack = new ThreadLocal();
+    private static final ThreadLocal ENTRY_STACK = new ThreadLocal();
 
     /**
      * 开始计时。
@@ -26,8 +26,8 @@ public final class Profiler {
      *
      * @param message 第一个entry的信息
      */
-    public static void start(String message) {
-        entryStack.set(new Entry(message, null, null));
+    public static void start(final String message) {
+        ENTRY_STACK.set(new Entry(message, null, null));
     }
 
     /**
@@ -35,8 +35,8 @@ public final class Profiler {
      *
      * @param message 第一个entry的信息
      */
-    public static void start(Message message) {
-        entryStack.set(new Entry(message, null, null));
+    public static void start(final Message message) {
+        ENTRY_STACK.set(new Entry(message, null, null));
     }
 
     /**
@@ -47,7 +47,7 @@ public final class Profiler {
      * </p>
      */
     public static void reset() {
-        entryStack.set(null);
+        ENTRY_STACK.set(null);
     }
 
     /**
@@ -55,7 +55,7 @@ public final class Profiler {
      *
      * @param message 新entry的信息
      */
-    public static void enter(String message) {
+    public static void enter(final String message) {
         Entry currentEntry = getCurrentEntry();
 
         if (currentEntry != null) {
@@ -68,7 +68,7 @@ public final class Profiler {
      *
      * @param message 新entry的信息
      */
-    public static void enter(Message message) {
+    public static void enter(final Message message) {
         Entry currentEntry = getCurrentEntry();
 
         if (currentEntry != null) {
@@ -93,7 +93,7 @@ public final class Profiler {
      * @return 耗费的总时间，如果未开始计时，则返回<code>-1</code>
      */
     public static long getDuration() {
-        Entry entry = (Entry) entryStack.get();
+        Entry entry = (Entry) ENTRY_STACK.get();
 
         if (entry != null) {
             return entry.getDuration();
@@ -117,7 +117,7 @@ public final class Profiler {
      * @param prefix 前缀
      * @return 列出所有entry，并统计各自所占用的时间
      */
-    public static String dump(String prefix) {
+    public static String dump(final String prefix) {
         return dump(prefix, prefix);
     }
 
@@ -128,8 +128,8 @@ public final class Profiler {
      * @param prefix2 后续行前缀
      * @return 列出所有entry，并统计各自所占用的时间
      */
-    public static String dump(String prefix1, String prefix2) {
-        Entry entry = (Entry) entryStack.get();
+    public static String dump(final String prefix1, final String prefix2) {
+        Entry entry = (Entry) ENTRY_STACK.get();
 
         if (entry != null) {
             return entry.toString(prefix1, prefix2);
@@ -144,7 +144,7 @@ public final class Profiler {
      * @return 第一个entry，如果不存在，则返回<code>null</code>
      */
     public static Entry getEntry() {
-        return (Entry) entryStack.get();
+        return (Entry) ENTRY_STACK.get();
     }
 
     /**
@@ -153,7 +153,7 @@ public final class Profiler {
      * @return 最近的一个entry，如果不存在，则返回<code>null</code>
      */
     private static Entry getCurrentEntry() {
-        Entry subEntry = (Entry) entryStack.get();
+        Entry subEntry = (Entry) ENTRY_STACK.get();
         Entry entry = null;
 
         if (subEntry != null) {
@@ -185,7 +185,7 @@ public final class Profiler {
          * @param parentEntry 父entry，可以是<code>null</code>
          * @param firstEntry  第一个entry，可以是<code>null</code>
          */
-        private Entry(Object message, Entry parentEntry, Entry firstEntry) {
+        private Entry(final Object message, final Entry parentEntry, final Entry firstEntry) {
             this.message = message;
             this.startTime = System.currentTimeMillis();
             this.parentEntry = parentEntry;
@@ -353,7 +353,7 @@ public final class Profiler {
          *
          * @param message 子entry的信息
          */
-        private void enterSubEntry(Object message) {
+        private void enterSubEntry(final Object message) {
             Entry subEntry = new Entry(message, this, firstEntry);
 
             subEntries.add(subEntry);
@@ -394,7 +394,7 @@ public final class Profiler {
          * @param prefix2 后续行前缀
          * @return 字符串表示的entry
          */
-        private String toString(String prefix1, String prefix2) {
+        private String toString(final String prefix1, final String prefix2) {
             StringBuffer buffer = new StringBuffer();
 
             toString(buffer, prefix1, prefix2);
@@ -409,7 +409,7 @@ public final class Profiler {
          * @param prefix1 首行前缀
          * @param prefix2 后续行前缀
          */
-        private void toString(StringBuffer buffer, String prefix1, String prefix2) {
+        private void toString(final StringBuffer buffer, final String prefix1, final String prefix2) {
             buffer.append(prefix1);
 
             String message = getMessage();
