@@ -2,6 +2,7 @@ package me.yumin.common.asset.result;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -13,12 +14,17 @@ public final class Result<T> implements Serializable {
 
     @Getter
     protected boolean success = false;
+
+    @Setter
     @Getter
     protected boolean retry = false;
+
     @Getter
     protected int code = 0;
+
     @Getter
     protected String msg = null;
+
     @Getter
     @Setter
     protected T data = null;

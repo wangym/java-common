@@ -1,30 +1,40 @@
-package me.yumin.common.asset.page;
+package me.yumin.common.asset.result;
 
 import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
  * @author chinawym@gmail.com
  * @since 2015-07-09
  */
-public final class Page implements Serializable {
+public final class PageResult<T> implements Serializable {
     private static final long serialVersionUID = 2710973307675225562L;
 
     @Getter
-    private long totalRows; // 总行数
+    private long totalRows = 0; // 总行数
+
     @Getter
-    private int pageRows; // 每页数
+    private int pageNum = 0; // 当前页
+
     @Getter
-    private int pageNum; // 当前页
+    private int pageRows = 0; // 每页数
+
     @Getter
-    private long totalPage; // 总页数
+    private long totalPage = 0; // 总页数
+
     @Getter
     private boolean hasNext = true; // 下页否
+
+    @Getter
+    @Setter
+    protected T data = null;
 
     /**
      *
      */
-    private Page() {
+    private PageResult() {
     }
 
     /**
@@ -32,10 +42,10 @@ public final class Page implements Serializable {
      * @param pageRows  每页数
      * @param pageNum   当前页
      */
-    public Page(final long totalRows, final int pageRows, final int pageNum) {
+    public PageResult(final long totalRows, final int pageNum, final int pageRows) {
         this.totalRows = totalRows;
-        this.pageRows = pageRows;
         this.pageNum = pageNum;
+        this.pageRows = pageRows;
 
         // 动态值计算
         setTotalPage();
