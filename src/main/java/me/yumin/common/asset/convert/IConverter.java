@@ -1,4 +1,4 @@
-package me.yumin.common.asset.converter;
+package me.yumin.common.asset.convert;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface IConverter<S, T> {
      * @param source 源始类型
      * @return 目标类型
      */
-    T convert(final S source);
+    T convert(S source);
 
     /**
      * 类型转换(批量)
@@ -23,5 +23,5 @@ public interface IConverter<S, T> {
      * @param sources 源始类型
      * @return 目标类型
      */
-    List<T> convert(final List<S> sources);
+    List<T> convert(List<S> sources);
 }

@@ -8,64 +8,64 @@ public interface ILogProxy {
     /**
      * @param message the message object to log.
      */
-    void error(final String message);
+    void error(String message);
 
     /**
      * @param t the exception to log, including its stack trace.
      */
-    void error(final Throwable t);
+    void error(Throwable t);
 
     /**
      * @param message the message object to log.
      * @param t       the exception to log, including its stack trace.
      */
-    void error(final String message, final Throwable t);
+    void error(String message, Throwable t);
 
     /**
      * @param message the message object to log.
      */
-    void warn(final String message);
+    void warn(String message);
 
     /**
      * @param t the exception to log, including its stack trace.
      */
-    void warn(final Throwable t);
+    void warn(Throwable t);
 
     /**
      * @param message the message object to log.
      * @param t       the exception to log, including its stack trace.
      */
-    void warn(final String message, final Throwable t);
+    void warn(String message, Throwable t);
 
     /**
      * @param message the message object to log.
      */
-    void info(final String message);
+    void info(String message);
 
     /**
      * @param t the exception to log, including its stack trace.
      */
-    void info(final Throwable t);
+    void info(Throwable t);
 
     /**
      * @param message the message object to log.
      * @param t       the exception to log, including its stack trace.
      */
-    void info(final String message, final Throwable t);
+    void info(String message, Throwable t);
 
     /**
      * @param message the message object to log.
      */
-    void debug(final String message);
+    void debug(String message);
 
     /**
      * @param t the exception to log, including its stack trace.
      */
-    void debug(final Throwable t);
+    void debug(Throwable t);
 
     /**
      * @param message the message object to log.
      * @param t       the exception to log, including its stack trace.
      */
-    void debug(final String message, final Throwable t);
+    void debug(String message, Throwable t);
 }

@@ -11,11 +11,9 @@ public final class DateUtil {
     }
 
     /**
-     * @return
+     * @return 秒级时间戳
      */
     public static long getTimestamp() {
-        long timestamp = new Date().getTime() / 1000;
-
-        return timestamp;
+        return new Date().getTime() / 1000;
     }
 }

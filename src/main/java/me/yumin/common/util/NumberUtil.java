@@ -35,16 +35,17 @@ public final class NumberUtil {
     }
 
     /**
+     * @param value
      * @param args
      * @return
      */
-    public static boolean isNotEmpty(final Number... args) {
+    public static boolean isGreaterEqual(final long value, final Number... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
             int counter = 0;
-            for (Number number : args) {
-                if (null != number) {
+            for (Number arg : args) {
+                if (null != arg && value <= arg.longValue()) { // 支持int和long
                     counter++;
                 } else {
                     break;
@@ -63,13 +64,37 @@ public final class NumberUtil {
      * @param args
      * @return
      */
-    public static boolean isGreaterEqual(final long value, final Number... args) {
+    public static boolean isLessEqual(final long value, final Number... args) {
         boolean result = false;
 
         if (null != args && 0 < args.length) {
             int counter = 0;
             for (Number arg : args) {
-                if (null != arg && value <= arg.longValue()) { // 支持int和long
+                if (null != arg && value >= arg.longValue()) { // 支持int和long
+                    counter++;
+                } else {
+                    break;
+                }
+            }
+            if (counter == args.length) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * @param args
+     * @return
+     */
+    public static boolean isNotEmpty(final Number... args) {
+        boolean result = false;
+
+        if (null != args && 0 < args.length) {
+            int counter = 0;
+            for (Number number : args) {
+                if (null != number) {
                     counter++;
                 } else {
                     break;
