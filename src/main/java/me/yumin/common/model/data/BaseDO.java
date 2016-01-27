@@ -13,19 +13,19 @@ public abstract class BaseDO extends BaseModel {
     private static final long serialVersionUID = -8673404570046804823L;
 
     @Getter
-    private Date gmtCreate;
+    private Date gmtCreate; // 首次创建
 
     @Getter
-    private Date gmtModified;
-
-    @Getter
-    @Setter
-    private Integer rowVersion;
-
-    @Getter
-    private Integer rowStatus;
+    private Date gmtModified; // 最后修改
 
     @Getter
     @Setter
-    private Long bizType;
+    private Integer rowVersion; // 行版本号
+
+    @Getter
+    private Integer rowStatus; // 管理状态
+
+    @Getter
+    @Setter
+    private Integer bizType; // 业务类型
 }

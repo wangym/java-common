@@ -34,7 +34,7 @@ public final class Result<T> implements Serializable {
      * @param <R>
      * @return
      */
-    public <R extends IResultEnum> Result<T> setResult(final R resultEnum) {
+    public <R extends IResultEnum> Result<T> setResultEnum(final R resultEnum) {
         if (null != resultEnum) {
             this.success = resultEnum.isSuccess();
             this.retry = resultEnum.isRetry();

@@ -97,7 +97,7 @@ public final class StringUtil {
     public static boolean isJSONObject(final String json) {
         return isJSON(json, "{", "}");
     }
-    
+
     /**
      * 除去字符串头尾部的指定字符，如果字符串是<code>null</code>，依然返回<code>null</code>。
      * <pre>

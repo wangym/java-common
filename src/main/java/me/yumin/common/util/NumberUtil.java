@@ -129,6 +129,26 @@ public final class NumberUtil {
     }
 
     /**
+     * String转Int
+     *
+     * @param string 字符串型数值
+     * @return Long
+     */
+    public static Integer parseInt(final String string) {
+        Integer result = null;
+
+        try {
+            if (StringUtil.isNotEmpty(string)) {
+                result = Integer.parseInt(string);
+            }
+        } catch (NumberFormatException e) {
+            R.LOG.error(e);
+        }
+
+        return result;
+    }
+
+    /**
      * String转Long
      *
      * @param string 字符串型数值

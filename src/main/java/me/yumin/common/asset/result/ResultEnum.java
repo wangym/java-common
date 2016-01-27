@@ -34,4 +34,21 @@ public enum ResultEnum implements IResultEnum {
         this.code = code;
         this.msg = msg;
     }
+
+    /**
+     * @param code 结果编号
+     * @return 对应枚举
+     */
+    public static ResultEnum getResultEnum(final int code) {
+        ResultEnum result = null;
+
+        for (ResultEnum resultEnum : ResultEnum.values()) {
+            if (resultEnum.getCode() == code) {
+                result = resultEnum;
+                break;
+            }
+        }
+
+        return result;
+    }
 }

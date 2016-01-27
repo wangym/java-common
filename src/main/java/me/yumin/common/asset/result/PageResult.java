@@ -31,12 +31,6 @@ public final class PageResult<T> implements Serializable {
     protected T data = null;
 
     /**
-     *
-     */
-    private PageResult() {
-    }
-
-    /**
      * @param totalRows 总行数
      * @param pageRows  每页数
      * @param pageNum   当前页
