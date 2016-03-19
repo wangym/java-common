@@ -1,6 +1,7 @@
 package me.yumin.common.util;
 
 import me.yumin.common.R;
+
 import java.net.InetAddress;
 
 /**
@@ -12,9 +13,25 @@ public final class NetUtil {
     }
 
     /**
-     * @return
+     * @return hostAddress
      */
-    public static String getHostName() {
+    public static String getHostAddress() {
+        String result = null;
+
+        try {
+            InetAddress addr = InetAddress.getLocalHost();
+            result = addr.getHostAddress();
+        } catch (Exception e) {
+            R.LOG.error(e);
+        }
+
+        return result;
+    }
+
+    /**
+     * @return localHost
+     */
+    public static String getLocalHost() {
         String result = null;
 
         try {
