@@ -9,23 +9,6 @@ public final class Assert {
     }
 
     /**
-     * @param objects
-     */
-    public static void notNull(final Object... objects) {
-        for (Object object : objects) {
-            notNull(object, null);
-        }
-    }
-
-    /**
-     * @param object
-     * @param message
-     */
-    public static void notNull(final Object object, final String message) {
-        assertTrue(null != object, message);
-    }
-
-    /**
      * @param condition
      */
     public static void assertTrue(final boolean condition) {
@@ -40,6 +23,23 @@ public final class Assert {
         if (!condition) {
             exception(message);
         }
+    }
+
+    /**
+     * @param objects
+     */
+    public static void notNull(final Object... objects) {
+        for (Object object : objects) {
+            notNull(object, null);
+        }
+    }
+
+    /**
+     * @param object
+     * @param message
+     */
+    public static void notNull(final Object object, final String message) {
+        assertTrue(null != object, message);
     }
 
     /**

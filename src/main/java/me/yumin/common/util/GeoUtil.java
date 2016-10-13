@@ -14,82 +14,6 @@ public final class GeoUtil {
     private static final double PI = 3.14159265358979324 * 3000.0 / 180.0;
 
     /**
-     * BD09转GCJ02(百度坐标转高德坐标)
-     *
-     * @param baiduLat 百度坐标纬度
-     * @param baiduLog 百度坐标经度
-     * @return 高德坐标
-     */
-    public static double[] convertBD09ToGCJ02(final double baiduLat, final double baiduLog) throws Exception {
-        double[] result = {};
-
-        if (0 != baiduLat && 0 != baiduLog) {
-            double y = baiduLat - 0.006;
-            double x = baiduLog - 0.0065;
-            double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * PI);
-            double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * PI);
-            double lat = z * Math.sin(theta);
-            double log = z * Math.cos(theta);
-
-            if (0 != lat && 0 != log) {
-                result = new double[2];
-                result[0] = new BigDecimal(lat).setScale(6, RoundingMode.HALF_EVEN).doubleValue();
-                result[1] = new BigDecimal(log).setScale(6, RoundingMode.HALF_EVEN).doubleValue();
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * 市一级模糊
-     * example: 330100 -> 3301*
-     *
-     * @param cityCode
-     * @return
-     */
-    public static String getFuzzyCityCode(final String cityCode) {
-        return appendCityCodeTail(cityCode, 0, 4, "*");
-    }
-
-    /**
-     * 取两点距离(返回公里)
-     * 基于Google Android SDK内原生算法封装
-     *
-     * @param startLatLog 起点纬经度(纬前经后逗号间隔)
-     * @param endLatLog   终度纬经度(纬前经后逗号间隔)
-     * @return
-     */
-    public static float getDistanceBetween(final String startLatLog, final String endLatLog) throws Exception {
-        float result = -1;
-
-        if (StringUtil.isNotEmpty(startLatLog, endLatLog)) {
-            if (startLatLog.contains(",") && endLatLog.contains(",")) {
-                String[] start = startLatLog.split(",");
-                String[] end = endLatLog.split(",");
-                if ((null != start && 2 == start.length) && (null != end && 2 == end.length)) {
-                    Double startLatitude = NumberUtil.parseDouble(start[0]);
-                    Double startLongitude = NumberUtil.parseDouble(start[1]);
-                    Double endLatitude = NumberUtil.parseDouble(end[0]);
-                    Double endLongitude = NumberUtil.parseDouble(end[1]);
-
-                    if (NumberUtil.isNotEmpty(startLatitude, startLongitude, endLatitude, endLongitude) &&
-                            (0 != startLatitude && 0 != startLongitude && 0 != endLatitude && 0 != endLongitude)) {
-                        float[] results = new float[1];
-                        distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results);
-                        if (0 < results.length) {
-                            // 从米转为公里且用银行家模式舍位
-                            result = new BigDecimal(results[0] * 0.001).setScale(2, RoundingMode.HALF_EVEN).floatValue();
-                        }
-                    }
-                }
-            }
-        }
-
-        return result;
-    }
-
-    /**
      * @param lat1
      * @param lon1
      * @param lat2
@@ -198,12 +122,87 @@ public final class GeoUtil {
     }
 
     /**
+     * BD09转GCJ02(百度坐标转高德坐标)
+     *
+     * @param baiduLat 百度坐标纬度
+     * @param baiduLog 百度坐标经度
+     * @return 高德坐标
+     */
+    public static double[] convertBD09ToGCJ02(final double baiduLat, final double baiduLog) throws Exception {
+        double[] result = {};
+
+        if (0 != baiduLat && 0 != baiduLog) {
+            double y = baiduLat - 0.006;
+            double x = baiduLog - 0.0065;
+            double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * PI);
+            double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * PI);
+            double lat = z * Math.sin(theta);
+            double log = z * Math.cos(theta);
+
+            if (0 != lat && 0 != log) {
+                result = new double[2];
+                result[0] = new BigDecimal(lat).setScale(6, RoundingMode.HALF_EVEN).doubleValue();
+                result[1] = new BigDecimal(log).setScale(6, RoundingMode.HALF_EVEN).doubleValue();
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 取两点距离(返回公里)
+     * 基于Google Android SDK内原生算法封装
+     *
+     * @param startLatLog 起点纬经度(纬前经后逗号间隔)
+     * @param endLatLog   终度纬经度(纬前经后逗号间隔)
+     * @return
+     */
+    public static float getDistanceBetween(final String startLatLog, final String endLatLog) throws Exception {
+        float result = -1;
+
+        if (StringUtil.isNotEmpty(startLatLog, endLatLog)) {
+            if (startLatLog.contains(",") && endLatLog.contains(",")) {
+                String[] start = startLatLog.split(",");
+                String[] end = endLatLog.split(",");
+                if ((null != start && 2 == start.length) && (null != end && 2 == end.length)) {
+                    Double startLatitude = NumberUtil.parseDouble(start[0]);
+                    Double startLongitude = NumberUtil.parseDouble(start[1]);
+                    Double endLatitude = NumberUtil.parseDouble(end[0]);
+                    Double endLongitude = NumberUtil.parseDouble(end[1]);
+
+                    if (NumberUtil.isNotEmpty(startLatitude, startLongitude, endLatitude, endLongitude) &&
+                            (0 != startLatitude && 0 != startLongitude && 0 != endLatitude && 0 != endLongitude)) {
+                        float[] results = new float[1];
+                        distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results);
+                        if (0 < results.length) {
+                            // 从米转为公里且用银行家模式舍位
+                            result = new BigDecimal(results[0] * 0.001).setScale(2, RoundingMode.HALF_EVEN).floatValue();
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 市一级模糊
+     * example: 330100 -> 3301*
+     *
+     * @param cityCode
+     * @return
+     */
+    public static String getFuzzyCityCode(final String cityCode) {
+        return appendCityCodeTail(cityCode, 0, 4, "*");
+    }
+
+    /**
      * @param cityCode
      * @param beginIndex
      * @param endIndex
      * @param tail
-     * @return
-     * http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201504/t20150415_712722.html
+     * @return http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201504/t20150415_712722.html
      */
     private static String appendCityCodeTail(final String cityCode, final int beginIndex, final int endIndex, final String tail) {
         String result = cityCode;

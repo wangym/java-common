@@ -81,13 +81,6 @@ public final class UniqueId {
     }
 
     /**
-     * @return currentTimeMillis
-     */
-    public long getUniqueTime() {
-        return uniqueTimer.currentTimeMillis();
-    }
-
-    /**
      * @return hash
      */
     public byte[] getUniqueIdHash() {
@@ -102,10 +95,17 @@ public final class UniqueId {
     }
 
     /**
+     * @return currentTimeMillis
+     */
+    public long getUniqueTime() {
+        return uniqueTimer.currentTimeMillis();
+    }
+
+    /**
      * @param bytes byte[]
      * @return String
      */
-    private String bytesToString(byte[] bytes) {
+    private String bytesToString(final byte[] bytes) {
         int length = bytes.length;
         char[] out = new char[length << 1];
         for (int x = 0, y = 0; x < length; x++) {
@@ -120,7 +120,7 @@ public final class UniqueId {
      * @param string String
      * @return byte[]
      */
-    private byte[] hash(String string) {
+    private byte[] hash(final String string) {
         reentrantLock.lock();
         try {
             byte[] bytes = messageDigest.digest(string.getBytes());
@@ -138,7 +138,7 @@ public final class UniqueId {
      * @param string String
      * @return String
      */
-    private String hashString(String string) {
+    private String hashString(final String string) {
         return bytesToString(hash(string));
     }
 

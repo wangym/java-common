@@ -1,6 +1,7 @@
 package me.yumin.common.util;
 
 import me.yumin.common.R;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -34,30 +35,6 @@ public final class ReflectUtil {
         }
 
         return fieldValue;
-    }
-
-    /**
-     * Setting field value
-     *
-     * @param object     Java object
-     * @param fieldName  类私有属性名
-     * @param fieldValue 属性值
-     * @return true|false
-     */
-    public static boolean setFieldValue(final Object object, final String fieldName, final Object fieldValue) {
-        boolean result = false;
-
-        try {
-            Field field = getDeclaredField(object, fieldName);
-            field.set(object, fieldValue);
-            result = true;
-        } catch (NoSuchFieldException e) {
-            R.LOG.error(e);
-        } catch (IllegalAccessException e) {
-            R.LOG.error(e);
-        }
-
-        return result;
     }
 
     /**
@@ -118,6 +95,30 @@ public final class ReflectUtil {
 
             }
             result = invokeMethod(object, methodName, types, values);
+        }
+
+        return result;
+    }
+
+    /**
+     * Setting field value
+     *
+     * @param object     Java object
+     * @param fieldName  类私有属性名
+     * @param fieldValue 属性值
+     * @return true|false
+     */
+    public static boolean setFieldValue(final Object object, final String fieldName, final Object fieldValue) {
+        boolean result = false;
+
+        try {
+            Field field = getDeclaredField(object, fieldName);
+            field.set(object, fieldValue);
+            result = true;
+        } catch (NoSuchFieldException e) {
+            R.LOG.error(e);
+        } catch (IllegalAccessException e) {
+            R.LOG.error(e);
         }
 
         return result;

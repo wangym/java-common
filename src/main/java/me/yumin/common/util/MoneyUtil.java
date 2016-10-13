@@ -16,7 +16,7 @@ public final class MoneyUtil {
      * @param cent 分
      * @return 元
      */
-    public static BigDecimal toYuan(Long cent) {
+    public static BigDecimal toYuan(final Long cent) {
         BigDecimal result = null;
 
         if (null != cent) {

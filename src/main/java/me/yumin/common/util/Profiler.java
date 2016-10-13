@@ -15,94 +15,6 @@ public final class Profiler {
     private static final ThreadLocal ENTRY_STACK = new ThreadLocal();
 
     /**
-     * 开始计时。
-     */
-    public static void start() {
-        start((String) null);
-    }
-
-    /**
-     * 开始计时。
-     *
-     * @param message 第一个entry的信息
-     */
-    public static void start(final String message) {
-        ENTRY_STACK.set(new Entry(message, null, null));
-    }
-
-    /**
-     * 开始计时。
-     *
-     * @param message 第一个entry的信息
-     */
-    public static void start(final Message message) {
-        ENTRY_STACK.set(new Entry(message, null, null));
-    }
-
-    /**
-     * 清除计时器。
-     * <p/>
-     * <p>
-     * 清除以后必须再次调用<code>start</code>方可重新计时。
-     * </p>
-     */
-    public static void reset() {
-        ENTRY_STACK.set(null);
-    }
-
-    /**
-     * 开始一个新的entry，并计时。
-     *
-     * @param message 新entry的信息
-     */
-    public static void enter(final String message) {
-        Entry currentEntry = getCurrentEntry();
-
-        if (currentEntry != null) {
-            currentEntry.enterSubEntry(message);
-        }
-    }
-
-    /**
-     * 开始一个新的entry，并计时。
-     *
-     * @param message 新entry的信息
-     */
-    public static void enter(final Message message) {
-        Entry currentEntry = getCurrentEntry();
-
-        if (currentEntry != null) {
-            currentEntry.enterSubEntry(message);
-        }
-    }
-
-    /**
-     * 结束最近的一个entry，记录结束时间。
-     */
-    public static void release() {
-        Entry currentEntry = getCurrentEntry();
-
-        if (currentEntry != null) {
-            currentEntry.release();
-        }
-    }
-
-    /**
-     * 取得耗费的总时间。
-     *
-     * @return 耗费的总时间，如果未开始计时，则返回<code>-1</code>
-     */
-    public static long getDuration() {
-        Entry entry = (Entry) ENTRY_STACK.get();
-
-        if (entry != null) {
-            return entry.getDuration();
-        } else {
-            return -1;
-        }
-    }
-
-    /**
      * 列出所有的entry。
      *
      * @return 列出所有entry，并统计各自所占用的时间
@@ -139,6 +51,47 @@ public final class Profiler {
     }
 
     /**
+     * 开始一个新的entry，并计时。
+     *
+     * @param message 新entry的信息
+     */
+    public static void enter(final Message message) {
+        Entry currentEntry = getCurrentEntry();
+
+        if (currentEntry != null) {
+            currentEntry.enterSubEntry(message);
+        }
+    }
+
+    /**
+     * 开始一个新的entry，并计时。
+     *
+     * @param message 新entry的信息
+     */
+    public static void enter(final String message) {
+        Entry currentEntry = getCurrentEntry();
+
+        if (currentEntry != null) {
+            currentEntry.enterSubEntry(message);
+        }
+    }
+
+    /**
+     * 取得耗费的总时间。
+     *
+     * @return 耗费的总时间，如果未开始计时，则返回<code>-1</code>
+     */
+    public static long getDuration() {
+        Entry entry = (Entry) ENTRY_STACK.get();
+
+        if (entry != null) {
+            return entry.getDuration();
+        } else {
+            return -1;
+        }
+    }
+
+    /**
      * 取得第一个entry。
      *
      * @return 第一个entry，如果不存在，则返回<code>null</code>
@@ -148,22 +101,50 @@ public final class Profiler {
     }
 
     /**
-     * 取得最近的一个entry。
-     *
-     * @return 最近的一个entry，如果不存在，则返回<code>null</code>
+     * 结束最近的一个entry，记录结束时间。
      */
-    private static Entry getCurrentEntry() {
-        Entry subEntry = (Entry) ENTRY_STACK.get();
-        Entry entry = null;
+    public static void release() {
+        Entry currentEntry = getCurrentEntry();
 
-        if (subEntry != null) {
-            do {
-                entry = subEntry;
-                subEntry = entry.getUnreleasedEntry();
-            } while (subEntry != null);
+        if (currentEntry != null) {
+            currentEntry.release();
         }
+    }
 
-        return entry;
+    /**
+     * 清除计时器。
+     * <p/>
+     * <p>
+     * 清除以后必须再次调用<code>start</code>方可重新计时。
+     * </p>
+     */
+    public static void reset() {
+        ENTRY_STACK.set(null);
+    }
+
+    /**
+     * 开始计时。
+     */
+    public static void start() {
+        start((String) null);
+    }
+
+    /**
+     * 开始计时。
+     *
+     * @param message 第一个entry的信息
+     */
+    public static void start(final Message message) {
+        ENTRY_STACK.set(new Entry(message, null, null));
+    }
+
+    /**
+     * 开始计时。
+     *
+     * @param message 第一个entry的信息
+     */
+    public static void start(final String message) {
+        ENTRY_STACK.set(new Entry(message, null, null));
     }
 
     /**
@@ -473,10 +454,22 @@ public final class Profiler {
     }
 
     /**
-     * 显示消息的级别。
+     * 取得最近的一个entry。
+     *
+     * @return 最近的一个entry，如果不存在，则返回<code>null</code>
      */
-    public static enum MessageLevel {
-        NO_MESSAGE, BRIEF_MESSAGE, DETAILED_MESSAGE;
+    private static Entry getCurrentEntry() {
+        Entry subEntry = (Entry) ENTRY_STACK.get();
+        Entry entry = null;
+
+        if (subEntry != null) {
+            do {
+                entry = subEntry;
+                subEntry = entry.getUnreleasedEntry();
+            } while (subEntry != null);
+        }
+
+        return entry;
     }
 
     /**
@@ -488,5 +481,12 @@ public final class Profiler {
         String getBriefMessage();
 
         String getDetailedMessage();
+    }
+
+    /**
+     * 显示消息的级别。
+     */
+    public static enum MessageLevel {
+        NO_MESSAGE, BRIEF_MESSAGE, DETAILED_MESSAGE;
     }
 }

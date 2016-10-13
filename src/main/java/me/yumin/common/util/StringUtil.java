@@ -59,6 +59,22 @@ public final class StringUtil {
     }
 
     /**
+     * @param json
+     * @return
+     */
+    public static boolean isJSONArray(final String json) {
+        return isJSON(json, "[", "]");
+    }
+
+    /**
+     * @param json
+     * @return
+     */
+    public static boolean isJSONObject(final String json) {
+        return isJSON(json, "{", "}");
+    }
+
+    /**
      * @param args
      * @return
      */
@@ -80,22 +96,6 @@ public final class StringUtil {
         }
 
         return result;
-    }
-
-    /**
-     * @param json
-     * @return
-     */
-    public static boolean isJSONArray(final String json) {
-        return isJSON(json, "[", "]");
-    }
-
-    /**
-     * @param json
-     * @return
-     */
-    public static boolean isJSONObject(final String json) {
-        return isJSON(json, "{", "}");
     }
 
     /**

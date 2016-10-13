@@ -1,7 +1,4 @@
-package common.util;
-
-import me.yumin.common.util.NumberUtil;
-import me.yumin.common.util.StringUtil;
+package me.yumin.common.util;
 
 import java.util.*;
 
@@ -16,10 +13,10 @@ public final class CollectionUtil {
     /**
      * 整型字符串转整型列表集
      *
-     * @param strings 1,2,3
+     * @param strings example:1,2,3
      * @return list
      */
-    public static List<Integer> fromIntegerString(String strings) {
+    public static List<Integer> fromIntegerString(final String strings) {
         List<Integer> result = new ArrayList<Integer>();
 
         if (StringUtil.isNotEmpty(strings)) {

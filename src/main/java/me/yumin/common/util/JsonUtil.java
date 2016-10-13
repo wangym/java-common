@@ -8,6 +8,9 @@ import com.alibaba.fastjson.JSONObject;
  * @since 2015-10-11
  */
 public final class JsonUtil {
+    private JsonUtil() {
+    }
+
     /**
      * 判断能否互转
      *
