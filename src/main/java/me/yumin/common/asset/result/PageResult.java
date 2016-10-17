@@ -1,65 +1,156 @@
 package me.yumin.common.asset.result;
 
 import lombok.Getter;
-import lombok.Setter;
+import me.yumin.common.util.StringUtil;
+
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * @author chinawym@gmail.com
  * @since 2015-07-09
  */
-public final class PageResult<T> implements Serializable {
+public final class PageResult<T extends Collection> implements Serializable {
     private static final long serialVersionUID = 2710973307675225562L;
 
     @Getter
-    private long totalRows = 0; // 总行数
+    private int pageNum = 0; // 当前页码
 
     @Getter
-    private int pageNum = 0; // 当前页
+    private int pageRows = 0; // 每页数量
 
     @Getter
-    private int pageRows = 0; // 每页数
+    private int totalPage = 0; // 总的页数
 
     @Getter
-    private long totalPage = 0; // 总页数
+    private int totalRows = 0; // 总的行数
+
+    private boolean hasNext = false; // 有否下页
 
     @Getter
-    private boolean hasNext = true; // 下页否
+    private boolean success = true;
 
     @Getter
-    @Setter
-    protected T data = null;
+    private int code = 200;
 
-    /**
-     * @param totalRows 总行数
-     * @param pageRows  每页数
-     * @param pageNum   当前页
-     */
-    public PageResult(final long totalRows, final int pageNum, final int pageRows) {
-        this.totalRows = totalRows;
-        this.pageNum = pageNum;
-        this.pageRows = pageRows;
+    @Getter
+    private String msg = "OK"; // 提示信息
 
-        // 动态值计算
-        setTotalPage();
-        setHasNext();
-    }
+    @Getter
+    protected T data = null; // 结果集合
 
     /**
      *
      */
-    private void setTotalPage() {
+    public PageResult() {
+    }
+
+    /**
+     * @param pageNum   当前页
+     * @param pageRows  每页数
+     * @param totalRows 总行数
+     */
+    public PageResult(final int pageNum, final int pageRows, final int totalRows) {
+        this.pageNum = pageNum;
+        this.pageRows = pageRows;
+        this.totalRows = totalRows;
+
+        // 动态值计算
+        init();
+    }
+
+    /**
+     * 是否有数据
+     *
+     * @return true=有 || false=无
+     */
+    public boolean hasData() {
+        boolean result = false;
+
+        if (0 < totalRows) {
+            if (null != data && 0 < data.size()) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 是否有下页
+     *
+     * @return true=有 || false=无
+     */
+    public boolean hasNext() {
+        return hasNext;
+    }
+
+    /**
+     * @param code code
+     * @return this
+     */
+    public PageResult<T> setCode(final int code) {
+        this.code = code;
+        this.success = (200 == code);
+
+        return this;
+    }
+
+    /**
+     * @param data T
+     * @return this
+     */
+    public PageResult<T> setData(final T data) {
+        if (null != data) {
+            this.data = data;
+        }
+
+        return this;
+    }
+
+    /**
+     * @param e Exception
+     * @return this
+     */
+    public PageResult<T> setException(final Exception e) {
+        if (null != e) {
+            setCode(500).setMsg(e.getMessage());
+        }
+
+        return this;
+    }
+
+    /**
+     * @param msg msg
+     * @return this
+     */
+    public PageResult<T> setMsg(final String msg) {
+        if (StringUtil.isNotEmpty(msg)) {
+            this.msg = msg;
+        }
+
+        return this;
+    }
+
+    /**
+     * ========================================
+     * private methods
+     * ========================================
+     */
+
+    /**
+     *
+     */
+    private void init() {
         if (0 < totalRows && 0 < pageRows) {
             this.totalPage = (totalRows + pageRows - 1) / pageRows;
         }
+
+        this.hasNext = pageNum < totalPage;
     }
 
-    /**
-     *
-     */
-    private void setHasNext() {
-        if (pageNum >= totalPage) {
-            this.hasNext = false;
-        }
+    public static void main(String[] args) {
+        PageResult pageResult = new PageResult(100, 1, 10);
+        System.out.println(pageResult.toString());
     }
 }

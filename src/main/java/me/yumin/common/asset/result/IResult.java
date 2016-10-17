@@ -4,7 +4,7 @@ package me.yumin.common.asset.result;
  * @author chinawym@gmail.com
  * @since 2015-10-05
  */
-public interface IResultEnum {
+public interface IResult {
     /**
      * @return 是否成功
      */
