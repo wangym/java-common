@@ -2,6 +2,7 @@ package me.yumin.common.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 
 /**
  * @author chinawym@gmail.com
@@ -51,6 +52,16 @@ public final class JsonUtil {
         return JSON.parseObject(json, clazz);
     }
 
+    /**
+     * @param json json
+     * @param type see {@link TypeReference}
+     * @param <T>  T
+     * @return T
+     */
+    public static <T> T parseObject(final String json, final TypeReference<T> type) {
+        return JSON.parseObject(json, type);
+    }
+    
     /**
      * @param object
      * @return

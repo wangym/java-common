@@ -1,5 +1,8 @@
 package me.yumin.common.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 有关字符串处理的工具类。
  * <p/>
@@ -32,6 +35,25 @@ public final class StringUtil {
      */
     public static String defaultIfEmpty(final String str, final String defaultStr) {
         return ((null == str) || (0 == str.length())) ? defaultStr : str;
+    }
+
+    /**
+     * @param strings 字符列表
+     * @param space   间隔符号
+     * @return 将列表按符号间隔
+     */
+    public static String fromStringList(List<String> strings, String space) {
+        String result = null;
+
+        if (CollectionUtil.isNotEmpty(strings) && StringUtil.isNotEmpty(space)) {
+            StringBuilder stringBuffer = new StringBuilder();
+            for (String string : strings) {
+                stringBuffer.append(string).append(space);
+            }
+            result = stringBuffer.toString();
+        }
+
+        return result;
     }
 
     /**
@@ -92,6 +114,29 @@ public final class StringUtil {
             }
             if (counter == args.length) {
                 result = true;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * @param source 字符串(以分割符间隔)
+     * @param split  分隔符
+     * @return List
+     */
+    public static List<String> parseStringList(String source, String split) {
+        List<String> result = null;
+
+        if (isNotEmpty(source)) {
+            String[] strings = source.split(split);
+            if (0 < strings.length) {
+                result = new ArrayList<String>();
+                for (String string : strings) {
+                    if (isNotEmpty(string)) {
+                        result.add(string);
+                    }
+                }
             }
         }
 

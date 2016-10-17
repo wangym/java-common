@@ -35,6 +35,29 @@ public final class CollectionUtil {
     }
 
     /**
+     * 整型字符串转长整型列表集
+     *
+     * @param strings 1,2,3
+     * @return list
+     */
+    public static List<Long> fromLongString(String strings) {
+        List<Long> result = new ArrayList<Long>();
+
+        if (StringUtil.isNotEmpty(strings)) {
+            List<String> list = Arrays.asList(strings.split(","));
+            if (isNotEmpty(list)) {
+                for (String string : list) {
+                    Long value = NumberUtil.parseLong(string);
+                    if (null != value) {
+                        result.add(value);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * @param args
      * @return
      */
