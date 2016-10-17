@@ -1,4 +1,4 @@
-package me.yumin.common.type;
+package me.yumin.common.spec;
 
 /**
  * @author chinawym@gmail.com
